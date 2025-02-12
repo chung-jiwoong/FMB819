@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>ScPoEconometrics</title>
+    <title>R을 이용한 데이터분석</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Mylène Feuillade, Gustave Kenedi, Florian Oswald and Junnan He" />
+    <meta name="date" content="2025-02-12" />
     <script src="libs/header-attrs/header-attrs.js"></script>
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/countdown/countdown.css" rel="stylesheet" />
@@ -17,16 +17,13 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# ScPoEconometrics
+# R을 이용한 데이터분석
 ]
 .subtitle[
 ## Introduction
 ]
-.author[
-### Mylène Feuillade, Gustave Kenedi, Florian Oswald and Junnan He
-]
 .date[
-### Sciences Po Paris </br> 2023-02-09
+### 2025-02-12
 ]
 
 ---
@@ -34,7 +31,7 @@ class: center, middle, inverse, title-slide
 
 layout: true
 
-&lt;div class="my-footer"&gt;&lt;img src="../img/logo/ScPo-shield.png" style="height: 60px;"/&gt;&lt;/div&gt; 
+&lt;div class="my-footer"&gt;&lt;img src="../img/logo/KUBS-shield.png" style="height: 60px;"/&gt;&lt;/div&gt; 
 
 ---
 
@@ -42,86 +39,67 @@ layout: true
 
 
 
-# Welcome to ScPoEconometrics!
+## Welcome to FMB 819!
 
---
+- 수업의 목표
 
-- In this course you will learn the core tools of ***econometrics***.
- 
---
+    -   통계 소프트웨어 R과 친숙해지고,
+    -   데이터를 수집, 가공, 표현할 수 있으며
+    -   기본적 통계 개념 이해하여
+    -   데이터 분석의 결과를 해석할 수 있다.
 
-- You will also learn to use the `R` programming language!
 
---
+- 데이터 분석의 목표
 
-## What is *econometrics*?
-
-- A set of ***techniques and methods*** to answer (economic) questions with ***data***.
-
-- Some examples!
+    1.  **기술 요약(Description)**: 현상을 설명
+    2.  **예측(Prediction)**: 관측되지 않는 값을 예측
+    3.  **인과 관계(Causality)**: 한 변수가 다른 변수에 미치는 영향 분석
 
 ---
 
-# Answering Important Questions with Econometrics
+## 데이터 분석을 통해 답하고자 하는 질문
 
+1.  **기술요약(Description)**:
+    -   한국 성인 중 연 소득이 2천만원 미만인 사람은 몇 명인가? 평균 소득은 얼마인가? 대학 학위가 있는 사람과 없는 사람 간 평균 소득 차이는 얼마인가?
+2.  **예측(Prediction)**:
+    -   회사 웹사이트 방문자의 소득 (광고 목적)? 다음 분기 한국의 총소비 및 총소득은?
+3.  **인과 관계(Causality)**:
+    -   **한 개인**이 대학 학위를 가졌을 때와 가지지 않았을 때의 소득 차이는 얼마나 될까? (다른 모든 조건 – 부모의 배경, 키, 사회적 기술 등 – 이 동일하다고 가정할 때), 해당 개인이 남성이었을 경우 소득은 얼마나 달라질까?
+
+---
+
+## ...
+
+*   많은 경우 의사 결정을 위해서 기술/예측/인과 관계를 조합적으로 파악할 필요
+    -   우수한 학생들을 돕기 위해 다른 학생들의 기회를 희생할 수 있는 특목고를 운영해야 할까?
+    -   특목고 운영 여부는 특목고가 다양한 학생들에게 미치는 **인과적 효과**뿐만 아니라, 현재 학생 **구성(기술)**과 미래 학생 **구성(예측)**을 고려해야.
+    -   물론 의사결정을 위해서는 가치판단이 필요: 이는 데이터 분석의 영역이 아님
+    
+&lt;!--
 [&lt;ru-blockquote&gt;
-Does immigration *lead to* lower wages and/or higher unemployment for locals?
+이민이 지역 주민의 임금 하락 또는 실업률 증가를 초래하는가?
 &lt;/ru-blockquote&gt;](http://davidcard.berkeley.edu/papers/mariel-impact.pdf)
 
---
 
 [&lt;ru-blockquote&gt;
-Does raising the minimum wage *reduce* employment for the low-skilled?
+최저임금 인상이 저숙련 근로자의 고용을 감소시키는가?
 &lt;/ru-blockquote&gt;](http://davidcard.berkeley.edu/papers/njmin-aer.pdf)
 
---
 
 [&lt;ru-blockquote&gt;
-Does getting a college degree *afford* higher wages?
+대학 학위가 높은 임금을 보장하는가?
 &lt;/ru-blockquote&gt;](http://davidcard.berkeley.edu/papers/causal_educ_earnings.pdf)
 
---
 
 [&lt;ru-blockquote&gt;
-Do higher public debt levels *lead to* lower economic growth?
+공공 부채가 경제 성장 둔화로 이어지는가?
 &lt;/ru-blockquote&gt;](https://www.imf.org/external/pubs/ft/wp/2014/wp1434.pdf)
 
---
 
 [&lt;ru-blockquote&gt;
-Does the neighborhood you grew up in have an *impact* on your life outcomes?
+당신이 어릴 적 성장한 지역 환경이 이후 삶의 결과에 영향을 미치는가?
 &lt;/ru-blockquote&gt;](https://academic.oup.com/qje/article/133/3/1107/4850660)
-
----
-
-# Causality
-
-* Notice that ***many other factors could have caused*** each of the outcomes mentioned.
-
---
-
-* Often, we'll want to focus on the ***causal impact*** of just one of these factors (immigration, minimum wage, education ,etc.)
-
---
-
-* Econometrics is about spelling out ***conditions*** under which we can ***claim to measure causal relationships***.
-
-* We will encounter the most basic of those conditions, and talk about some potential pitfalls.
-
-* ["Credibility Revolution"](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3) in econometrics over the past 30 years ([2022 Economics Nobel](https://www.nobelprize.org/prizes/economic-sciences/2021/press-release/) awarded to some of the main protagonists of this "revolution")
-
----
-
-layout: false
-class: title-slide-section-red, middle
-
-# R
-
----
-
-layout: true
-
-&lt;div class="my-footer"&gt;&lt;img src="../img/logo/ScPo-shield.png" style="height: 60px;"/&gt;&lt;/div&gt; 
+--&gt;
 
 ---
 
@@ -220,7 +198,7 @@ layout: true
 
 .pull-left[
 
-```r
+``` r
 # load gapminder package
 library(gapminder)
 # load the dataset from the gapminder package
@@ -252,7 +230,7 @@ head(gapminder,n = 4)
 * Here we will only focus on the `dplyr` way:
 
 
-```r
+``` r
 # compute the required statistics
 gapminder_dplyr &lt;- gapminder %&gt;% 
   group_by(continent, year) %&gt;% 
@@ -262,7 +240,7 @@ gapminder_dplyr &lt;- gapminder %&gt;%
 ```
 
 
-```r
+``` r
 # show first 5 lines of the new data
 head(gapminder_dplyr, n = 5)
 ```
@@ -289,7 +267,7 @@ head(gapminder_dplyr, n = 5)
 * Nothing beats a picture, though:
 
 
-```r
+``` r
 ggplot(data = gapminder_dplyr, 
        mapping = aes(x = mean_lifeexp,
                      y = mean_gdppercap,
@@ -371,7 +349,7 @@ layout: true
 
 * Some basic arithmetic first:
 
-```r
+``` r
 4 + 1
 ```
 
@@ -379,7 +357,7 @@ layout: true
 ## [1] 5
 ```
 
-```r
+``` r
 8 / 2
 ```
 
@@ -390,7 +368,7 @@ layout: true
 
 * Great! What about this?
 
-```r
+``` r
 2^3
 ```
 
@@ -398,7 +376,7 @@ layout: true
 ## [1] 8
 ```
 
-```r
+``` r
 # by the way: this is a comment! R therefore disregards it
 ```
 
@@ -409,11 +387,11 @@ class: inverse
 # Task 1
 
 
-```r
+``` r
 countdown(minutes = 5, top = 0)
 ```
 
-<div class="countdown" id="timer_88be284d" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_db5ad82f" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -422,13 +400,13 @@ countdown(minutes = 5, top = 0)
 
 1. Type the following code in your script and run it. To run the code press `Ctrl` or `Cmd` + `Enter` (you can either highlight the code or just put your cursor at the end of the line)
     
-    ```r
+    ``` r
     4 * 8
     ```
 
 1. Type the following code in your script and run it. What happens if you only run the first line of the code?
     
-    ```r
+    ``` r
     x = 5 # equivalently x &lt;- 5
     x
     ```
@@ -443,7 +421,7 @@ Congratulations, you have created your first `R` "object"! Everything is an obje
 .pull-left[
 `R` built-in `help`:
 
-```r
+``` r
 ?log #? in front of function
 help(lm)   # help() is equivalent
 ??plot  # get all help on keyword "plot"
@@ -471,13 +449,13 @@ In practice:
 
 * Installing packages is easy! Just use the `install.packages` function:
     
-    ```r
+    ``` r
     install.packages("ggplot2")
     ```
 
 * To *use* the contents of a packge, we must load it from our library using `library`:
     
-    ```r
+    ``` r
     library(ggplot2)
     ```
 
@@ -490,7 +468,7 @@ In practice:
 .pull-left[
 * The `c` function creates vectors, i.e. *one-dimensional arrays*.
     
-    ```r
+    ``` r
     c(1, 3, 5, 7, 8, 9)
     ```
     
@@ -500,7 +478,7 @@ In practice:
     
 * Coercion to unique types:
     
-    ```r
+    ``` r
     (v &lt;- c(42, "Statistics", TRUE))
     ```
     
@@ -515,7 +493,7 @@ In practice:
 
 * Creating a *range*
     
-    ```r
+    ``` r
     1:10
     ```
     
@@ -525,7 +503,7 @@ In practice:
 
 * get vector elements with square bracket operator `[index]`:
     
-    ```r
+    ``` r
     v[c(1,3)]
     ```
     
@@ -541,7 +519,7 @@ In practice:
 `data.frame`s represent **tabular data**. Like spreadsheets.
 
 
-```r
+``` r
 example_data = data.frame(x = c(1, 3, 5, 7),
                           y = c(rep("Hello", 3), "Goodbye"),
                           z = c("one", 2, "three", 4))
@@ -566,7 +544,7 @@ class: inverse
 
 # Task 2
 
-<div class="countdown" id="timer_709bff92" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_be0d71cc" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -579,13 +557,13 @@ class: inverse
 
 1. Ensure that `murders` is a data.frame by running:
     
-    ```r
+    ``` r
     class(murder) # check class
     ```
 
 1. Find out what variables are contained in `murders` by running:
     
-    ```r
+    ``` r
     names(murders) # obtain variable names
     ```
 
@@ -601,7 +579,7 @@ class: inverse
 
 Useful functions to describe a dataframe:
 
-```r
+``` r
 str(murders) # `str` describes structure of any R object
 ```
 
@@ -617,7 +595,7 @@ str(murders) # `str` describes structure of any R object
 --
 
 
-```r
+``` r
 names(murders) # column names
 ```
 
@@ -628,7 +606,7 @@ names(murders) # column names
 --
 
 
-```r
+``` r
 nrow(murders) # number of rows
 ```
 
@@ -639,7 +617,7 @@ nrow(murders) # number of rows
 --
 
 
-```r
+``` r
 ncol(murders) # number of columns
 ```
 
@@ -654,7 +632,7 @@ ncol(murders) # number of columns
     
 * To extract one column **as a vector** we can use the `$` operator (as in `murders$state`), or the square bracket operator `[which_index]` with name or position index:
     
-    ```r
+    ``` r
     first5 &lt;- murders[1:5, ]  # take first 5 states only
     first5$state  # extract with $ operator
     ```
@@ -663,7 +641,7 @@ ncol(murders) # number of columns
     ## [1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"
     ```
     
-    ```r
+    ``` r
     first5[ ,"state"]  # extract with column name
     ```
     
@@ -671,7 +649,7 @@ ncol(murders) # number of columns
     ## [1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"
     ```
     
-    ```r
+    ``` r
     first5[ ,1] # get first column
     ```
     
@@ -684,7 +662,7 @@ ncol(murders) # number of columns
 .pull-left[
 * Check `class` of an object:
     
-    ```r
+    ``` r
     class(murders)
     ```
     
@@ -698,7 +676,7 @@ ncol(murders) # number of columns
 .pull-right[
 * `typeof` gives the R-internal data type:
     
-    ```r
+    ``` r
     typeof(murders)
     ```
     
@@ -713,7 +691,7 @@ ncol(murders) # number of columns
 
 * Subsetting a data.frame: `murders[row condition, column number]` or `murders[row condition, "column name"]`
     
-    ```r
+    ``` r
     # Only keep states with over 500 gun murders and keep only the "state" and "total" variables
     murders[murders$total &gt; 500, c("state", "total")]
     ```
@@ -726,7 +704,7 @@ ncol(murders) # number of columns
     ## 44      Texas   805
     ```
     
-    ```r
+    ``` r
     # Only keep California and Texas and keep only the "state" and "total" variables
     murders[murders$state %in% c("California", "Texas"), c("state", "total")]
     ```
@@ -744,7 +722,7 @@ class: inverse
 
 # Task 3
 
-<div class="countdown" id="timer_ab6efa17" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown" id="timer_112a358e" data-update-every="1" tabindex="0" style="top:0;right:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -759,7 +737,7 @@ class: inverse
 
 1. Create a `total_percap` variable equal to the number of murders per 10,000 inhabitants by running the following code.
     
-    ```r
+    ``` r
     murders$total_percap = (murders$total / murders$population) * 10000
     ```
 
@@ -940,7 +918,7 @@ Don't hesitate to ***reach out*** to your friends, family, any professor (includ
 ---
 
 class: title-slide-final, middle
-background-image: url(../img/logo/ScPo-econ.png)
+&lt;!-- background-image: url(../img/logo/ScPo-econ.png) --&gt;
 background-size: 250px
 background-position: 9% 19%
 

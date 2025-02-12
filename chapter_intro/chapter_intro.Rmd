@@ -1,8 +1,8 @@
 ---
-title: "ScPoEconometrics"
+title: "R을 이용한 데이터분석"
 subtitle: "Introduction"
-author: "Mylène Feuillade, Gustave Kenedi, Florian Oswald and Junnan He"
-date: "Sciences Po Paris </br> `r Sys.Date()`"
+# author: "Mylène Feuillade, Gustave Kenedi, Florian Oswald and Junnan He"
+date: "`r Sys.Date()`"
 output:
   xaringan::moon_reader:
     # chakra: "https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"
@@ -20,7 +20,7 @@ output:
 
 layout: true
 
-<div class="my-footer"><img src="../img/logo/ScPo-shield.png" style="height: 60px;"/></div> 
+<div class="my-footer"><img src="../img/logo/KUBS-shield.png" style="height: 60px;"/></div> 
 
 ---
 
@@ -58,86 +58,67 @@ countdown(
 
 
 
-# Welcome to ScPoEconometrics!
+## Welcome to FMB 819!
 
---
+- 수업의 목표
 
-- In this course you will learn the core tools of ***econometrics***.
- 
---
+    -   통계 소프트웨어 R과 친숙해지고,
+    -   데이터를 수집, 가공, 표현할 수 있으며
+    -   기본적 통계 개념 이해하여
+    -   데이터 분석의 결과를 해석할 수 있다.
 
-- You will also learn to use the `R` programming language!
 
---
+- 데이터 분석의 목표
 
-## What is *econometrics*?
-
-- A set of ***techniques and methods*** to answer (economic) questions with ***data***.
-
-- Some examples!
+    1.  **기술 요약(Description)**: 현상을 설명
+    2.  **예측(Prediction)**: 관측되지 않는 값을 예측
+    3.  **인과 관계(Causality)**: 한 변수가 다른 변수에 미치는 영향 분석
 
 ---
 
-# Answering Important Questions with Econometrics
+## 데이터 분석을 통해 답하고자 하는 질문
 
+1.  **기술요약(Description)**:
+    -   한국 성인 중 연 소득이 2천만원 미만인 사람은 몇 명인가? 평균 소득은 얼마인가? 대학 학위가 있는 사람과 없는 사람 간 평균 소득 차이는 얼마인가?
+2.  **예측(Prediction)**:
+    -   회사 웹사이트 방문자의 소득 (광고 목적)? 다음 분기 한국의 총소비 및 총소득은?
+3.  **인과 관계(Causality)**:
+    -   **한 개인**이 대학 학위를 가졌을 때와 가지지 않았을 때의 소득 차이는 얼마나 될까? (다른 모든 조건 – 부모의 배경, 키, 사회적 기술 등 – 이 동일하다고 가정할 때), 해당 개인이 남성이었을 경우 소득은 얼마나 달라질까?
+
+---
+
+## ...
+
+*   많은 경우 의사 결정을 위해서 기술/예측/인과 관계를 조합적으로 파악할 필요
+    -   우수한 학생들을 돕기 위해 다른 학생들의 기회를 희생할 수 있는 특목고를 운영해야 할까?
+    -   특목고 운영 여부는 특목고가 다양한 학생들에게 미치는 **인과적 효과**뿐만 아니라, 현재 학생 **구성(기술)**과 미래 학생 **구성(예측)**을 고려해야.
+    -   물론 의사결정을 위해서는 가치판단이 필요: 이는 데이터 분석의 영역이 아님
+    
+<!--
 [<ru-blockquote>
-Does immigration *lead to* lower wages and/or higher unemployment for locals?
+이민이 지역 주민의 임금 하락 또는 실업률 증가를 초래하는가?
 </ru-blockquote>](http://davidcard.berkeley.edu/papers/mariel-impact.pdf)
 
---
 
 [<ru-blockquote>
-Does raising the minimum wage *reduce* employment for the low-skilled?
+최저임금 인상이 저숙련 근로자의 고용을 감소시키는가?
 </ru-blockquote>](http://davidcard.berkeley.edu/papers/njmin-aer.pdf)
 
---
 
 [<ru-blockquote>
-Does getting a college degree *afford* higher wages?
+대학 학위가 높은 임금을 보장하는가?
 </ru-blockquote>](http://davidcard.berkeley.edu/papers/causal_educ_earnings.pdf)
 
---
 
 [<ru-blockquote>
-Do higher public debt levels *lead to* lower economic growth?
+공공 부채가 경제 성장 둔화로 이어지는가?
 </ru-blockquote>](https://www.imf.org/external/pubs/ft/wp/2014/wp1434.pdf)
 
---
 
 [<ru-blockquote>
-Does the neighborhood you grew up in have an *impact* on your life outcomes?
+당신이 어릴 적 성장한 지역 환경이 이후 삶의 결과에 영향을 미치는가?
 </ru-blockquote>](https://academic.oup.com/qje/article/133/3/1107/4850660)
-
----
-
-# Causality
-
-* Notice that ***many other factors could have caused*** each of the outcomes mentioned.
-
---
-
-* Often, we'll want to focus on the ***causal impact*** of just one of these factors (immigration, minimum wage, education ,etc.)
-
---
-
-* Econometrics is about spelling out ***conditions*** under which we can ***claim to measure causal relationships***.
-
-* We will encounter the most basic of those conditions, and talk about some potential pitfalls.
-
-* ["Credibility Revolution"](https://www.aeaweb.org/articles?id=10.1257/jep.24.2.3) in econometrics over the past 30 years ([2022 Economics Nobel](https://www.nobelprize.org/prizes/economic-sciences/2021/press-release/) awarded to some of the main protagonists of this "revolution")
-
----
-
-layout: false
-class: title-slide-section-red, middle
-
-# R
-
----
-
-layout: true
-
-<div class="my-footer"><img src="../img/logo/ScPo-shield.png" style="height: 60px;"/></div> 
+-->
 
 ---
 
@@ -828,7 +809,7 @@ Don't hesitate to ***reach out*** to your friends, family, any professor (includ
 ---
 
 class: title-slide-final, middle
-background-image: url(../img/logo/ScPo-econ.png)
+<!-- background-image: url(../img/logo/ScPo-econ.png) -->
 background-size: 250px
 background-position: 9% 19%
 
