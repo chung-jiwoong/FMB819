@@ -746,3 +746,11 @@ background-position: 9% 19%
 ```{r makepdf, echo=FALSE,eval=FALSE}
 system("decktape chapter_intro.html chapter_intro.pdf --chrome-arg=--disable-web-security")
 ```
+
+
+<!-- 
+git add .
+git commit -m "message"
+git push
+--> 
+
