@@ -1,5 +1,5 @@
 ---
-title: "R을 이용한 데이터분석"
+title: "FMB819: R을 이용한 데이터분석"
 subtitle: "Introduction"
 # author: "Mylène Feuillade, Gustave Kenedi, Florian Oswald and Junnan He"
 date: "`r Sys.Date()`"
@@ -58,160 +58,72 @@ countdown(
 
 
 
-## Welcome to FMB 819!
+# Welcome to FMB 819!
 
 - 수업의 목표
 
-    -   통계 소프트웨어 R과 친숙해지고,
-    -   데이터를 수집, 가공, 표현할 수 있으며
-    -   기본적 통계 개념 이해하여
-    -   데이터 분석의 결과를 해석할 수 있다.
+    1.  통계 소프트웨어 R과 친숙해지고,
+    1.   데이터를 수집, 가공, 표현할 수 있으며
+    1.   기본적 통계 개념 이해하여
+    1.   데이터 분석의 결과를 해석할 수 있다.
 
 
 - 데이터 분석의 목표
 
     1.  **기술 요약(Description)**: 현상을 설명
-    2.  **예측(Prediction)**: 관측되지 않는 값을 예측
-    3.  **인과 관계(Causality)**: 한 변수가 다른 변수에 미치는 영향 분석
+    1.  **예측(Prediction)**: 관측되지 않는 값을 예측
+    1.  **인과 관계(Causality)**: 한 변수가 다른 변수에 미치는 영향 분석
 
 ---
 
-## 데이터 분석을 통해 답하고자 하는 질문
+# 데이터 분석을 통해 답하고자 하는 질문
 
 1.  **기술요약(Description)**:
     -   한국 성인 중 연 소득이 2천만원 미만인 사람은 몇 명인가? 평균 소득은 얼마인가? 대학 학위가 있는 사람과 없는 사람 간 평균 소득 차이는 얼마인가?
-2.  **예측(Prediction)**:
+    
+1.  **예측(Prediction)**:
     -   회사 웹사이트 방문자의 소득 (광고 목적)? 다음 분기 한국의 총소비 및 총소득은?
-3.  **인과 관계(Causality)**:
-    -   **한 개인**이 대학 학위를 가졌을 때와 가지지 않았을 때의 소득 차이는 얼마나 될까? (다른 모든 조건 – 부모의 배경, 키, 사회적 기술 등 – 이 동일하다고 가정할 때), 해당 개인이 남성이었을 경우 소득은 얼마나 달라질까?
+    
+1.  **인과 관계(Causality)**:
+    -   __한 개인__이 대학 학위를 가졌을 때와 가지지 않았을 때의 소득 차이는 얼마나 될까? (다른 모든 조건 – 부모의 배경, 키, 사회적 기술 등 – 이 동일하다고 가정할 때), 해당 개인이 남성이었을 경우 소득은 얼마나 달라질까?
 
 ---
 
-## ...
+# ...continued
 
 *   많은 경우 의사 결정을 위해서 기술/예측/인과 관계를 조합적으로 파악할 필요
+
     -   우수한 학생들을 돕기 위해 다른 학생들의 기회를 희생할 수 있는 특목고를 운영해야 할까?
-    -   특목고 운영 여부는 특목고가 다양한 학생들에게 미치는 **인과적 효과**뿐만 아니라, 현재 학생 **구성(기술)**과 미래 학생 **구성(예측)**을 고려해야.
-    -   물론 의사결정을 위해서는 가치판단이 필요: 이는 데이터 분석의 영역이 아님
     
-<!--
-[<ru-blockquote>
-이민이 지역 주민의 임금 하락 또는 실업률 증가를 초래하는가?
-</ru-blockquote>](http://davidcard.berkeley.edu/papers/mariel-impact.pdf)
-
-
-[<ru-blockquote>
-최저임금 인상이 저숙련 근로자의 고용을 감소시키는가?
-</ru-blockquote>](http://davidcard.berkeley.edu/papers/njmin-aer.pdf)
-
-
-[<ru-blockquote>
-대학 학위가 높은 임금을 보장하는가?
-</ru-blockquote>](http://davidcard.berkeley.edu/papers/causal_educ_earnings.pdf)
-
-
-[<ru-blockquote>
-공공 부채가 경제 성장 둔화로 이어지는가?
-</ru-blockquote>](https://www.imf.org/external/pubs/ft/wp/2014/wp1434.pdf)
-
-
-[<ru-blockquote>
-당신이 어릴 적 성장한 지역 환경이 이후 삶의 결과에 영향을 미치는가?
-</ru-blockquote>](https://academic.oup.com/qje/article/133/3/1107/4850660)
--->
+    -   특목고 운영 여부는 특목고가 다양한 학생들에게 미치는 **인과적 효과**뿐만 아니라, 현재 학생 **구성(기술)**과 미래 학생 **구성(예측)**을 고려해야.
+    
+    -   물론 의사결정을 위해서는 가치판단이 필요: 이는 데이터 분석의 영역이 아님
+  
 
 ---
 
-## What is `R`?
+# `R`이란?
 
-`R` is a __programming language__ with powerful statistical and graphic capabilities.
+- `R`은 강력한 통계 및 그래픽 기능을 갖춘 **프로그래밍 언어**.
 
---
 
-## Why are we using `R`?<sup>1</sup>
+- `R`을 사용하는 이유
 
-.footnote[
-[1]: This list has been inspired by [Ed Rubin's](https://github.com/edrubin/EC421S19).  
-<span style="visibility:hidden">[2]: Learning `R` definitely requires time and effort but it's worth it, trust me! .</span>
-]
-
---
-
-1. `R` is __free__ and __open source__—saving both you and the university 💰💵💰.
-
---
-
-1. `R` is very __flexible and powerful__—adaptable to nearly any task, (data cleaning, data visualization, econometrics, spatial data analysis, machine learning, web scraping, etc.)
-
---
-
-1. `R` has a vibrant, [thriving online community](https://stackoverflow.com/questions/tagged/r) that will (almost) always have a solution to your problem.
-
---
-
-1. If you put in the work<sup>2</sup>, you will come away with a __very valuable and useful__ tool.
-
-.footnote[
-<span style="visibility:hidden">[1]: This list has been inspired by [Ed Rubin's](https://github.com/edrubin/EC421S19).</span>  
-[2]: Learning `R` definitely requires time and effort but it's worth it, trust me! 
-]
-
-<!-- --- -->
-
-<!-- # Why can't we just use Excel? -->
-
-<!-- Many reasons but here are just a few: -->
-
-<!-- -- -->
-
-<!-- - Not ***reproducible***. -->
-
-<!-- -- -->
-
-<!-- - Not straightforward to ***merge*** datasets together. -->
-
-<!-- -- -->
-
-<!-- - Very fastidious to ***clean*** data. -->
-
-<!-- -- -->
-
-<!-- - Limited to ***small datasets***. -->
-
-<!-- -- -->
-
-<!-- - Not designed for proper ***econometric analyses***, maps, complex visualisations, etc. -->
+    1. **무료(free)**이며 **오픈소스(open source)** 
+    1. **유연하고 강력함** → 데이터 정리, 시각화, 기계학습 등 거의 모든 분석 가능.  
+    1. [활발한 온라인 커뮤니티](https://stackoverflow.com/questions/tagged/r), 대부분의 문제에 대한 해결책 존재.  
 
 ---
 
-layout: false
-class: title-slide-section-red, middle
+# 데이터 처리 (Data Wrangling)
 
-# First Taste of R 
+- 데이터 분석 전에 데이터를 정리하는 데 많은 시간 소요됨.
 
----
+- `gapminder` 데이터셋 사용: 1952~2007년 각국의 기대수명, 1인당 GDP, 인구 데이터 포함.
 
-layout: true
+- 각 연도별/대륙별 평균 기대수명과 평균 1인당 GDP 계산 목표.
 
-<div class="my-footer"><img src="../img/logo/ScPo-shield.png" style="height: 60px;"/></div>
-
----
-
-# In Practice: Data Wrangling
-
---
-
-* You will spend a lot of time preparing data for further analysis.
-
---
-
-* The `gapminder` dataset contains data on life expectancy, GDP per capita and population by country between 1952 and 2007.
-
-* Suppose we want to know the average life expectancy and average GDP per capita for each continent in each year.
-
---
-
-* We need to group the data by continent *and* year, then compute the average life expectancy and average GDP per capita
+- 우선 대륙 *and* 연도별로 자료를 그룹핑을 하고, 평균 기대수명과 평균 1인당 GDP 계산
 
 --
 
@@ -233,13 +145,14 @@ head(gapminder,n = 4)
 
 ---
 
-# In Practice: Data Wrangling
+# ...continued
 
-* There are always several ways to achieve a goal. (As in life 😁)
+* 당연히, 여러 가지 방법으로 이 작업을 할 수 있다. 
 
-* Here we will only focus on the `dplyr` way:
+* 여기서는 `dplyr`패키지를 사용하겠다.:
 
 ```{r}
+library(dplyr)
 # compute the required statistics
 gapminder_dplyr <- gapminder %>% 
   group_by(continent, year) %>% 
@@ -258,9 +171,7 @@ head(gapminder_dplyr, n = 5)
 # Visualisation
 
 .pull-left[
-* Now we could *look* at the result in `gapminder_dplyr`, or compute some statistics from it. 
-
-* Nothing beats a picture, though:
+* 그래프를 그려서 `gapminder_dplyr`를 살펴보자:
 
 ```{r gampminder_plot, eval = FALSE}
 ggplot(data = gapminder_dplyr, 
@@ -284,7 +195,7 @@ ggplot(data = gapminder_dplyr,
 
 ---
 
-# Animated Plotting 👌 <sup>1</sup>
+# Animated Plotting 
 
 ```{r, example: gganimate, include = F, cache = T}
 # The package for animating ggplot2
@@ -322,45 +233,79 @@ library(gganimate)
 .center[![Gapminder](chapter_intro_files/figure-html/ex_gganimate.gif)]
 
 .footnote[
-[1]: This animation is taken from [Ed Rubin](https://raw.githack.com/edrubin/EC421S19/master/LectureNotes/01Intro/01_intro.html#40).
+출처: [Ed Rubin](https://raw.githack.com/edrubin/EC421S19/master/LectureNotes/01Intro/01_intro.html#40).
 ]
 
 ---
 
-layout: false
-class: title-slide-section-red, middle
 
-# R 101: Here Is Where You Start
+# R 설치 방법 - Windows 환경 기준
+
+-   `winget`을 이용한 설치
+
+    *  PowerShell 또는 명령 프롬프트(cmd) 열고 아래 명령어 실행
+    ```{r, eval = F}
+    winget install -e --id RProject.R
+    ```
+
+
+-   공식 웹사이트에서 다운로드하여 설치
+
+    1.  [CRAN 공식 웹사이트](https://cran.r-project.org/)에 접속
+    1.  "Download R for Windows" 클릭
+    1.  "base" 패키지를 선택하고 최신 버전을 다운로드
+    1.  다운로드한 설치 파일 실행 후 기본 설정으로 설치 진행
+    
+    
+---
+
+
+# RStudio 설치 방법
+
+R 프로그래밍 언어를 위한 통합 개발 환경(IDE, Integrated Development Environment)
+
+-   `winget` 을 이용한 설치
+    *  PowerShell 또는 명령 프롬프트 열고 아래 명령어 실행
+    ```{r, eval = F}
+    winget install -e --id Posit.RStudio
+    ```
+
+    *  RStudio 업그레이드가 필요할 경우 다음 명령어 실행
+    ```{r, eval = F}
+    winget upgrade --id Posit.RStudio
+    ```
+
+-   공식 웹사이트에서 다운로드하여 설치
+
+    1.  [RStudio 공식 웹사이트](https://posit.co/download/rstudio-desktop/) 접속
+    1.  "RStudio Desktop"의 무료 버전을 선택하여 다운로드
+    1.  다운로드한 설치 파일 실행 후 기본 설정으로 설치
+    1.  설치 완료 후 RStudio 실행하여 정상 작동하는지 확인
 
 ---
 
-layout: true
 
-<div class="my-footer"><img src="../img/logo/ScPo-shield.png" style="height: 60px;"/></div> 
+# 설치 확인
 
----
+설치가 정상적으로 완료되었는지 확인하기 위해 R과 RStudio 실행.
 
-# Start your `RStudio`!
+1.  **RStudio 실행**
+    -   Windows 검색창에서 "RStudio" 검색 후 실행.
+    -   콘솔에서 `version` 입력하여 설치된 R 버전 확인.
+```{r, eval = F}
+version
+```
+1.  **R에서 간단한 코드 실행**
+    -   다음 코드를 console에서 실행하여 정상 동작하는지 확인.
 
-## First Glossary of Terms
+```{r, echo=TRUE}
+print("R과 RStudio 설치 완료!")
+```
 
-* `R`: a programming language.
-
-* `RStudio`: an integrated development environment (IDE) to work with `R`.
-
---
-
-* *command*: user input (text or numbers) that `R` *understands*.
-
-* *script*: a list of commands collected in a text file, each separated by a new line, to be run one after the other.
-
---
-
-* To run a script, you need to highlight the relevant code lines and hit `Ctrl`+`Enter` (Windows) or `Cmd`+`Enter` (Mac).
 
 ---
 
-# `RStudio` Layout
+# RStudio Layout
 
 ```{r, echo = F, out.width = "600px"}
 knitr::include_graphics("chapter_intro_files/figure-html/rstudio.png")
@@ -368,56 +313,97 @@ knitr::include_graphics("chapter_intro_files/figure-html/rstudio.png")
 
 ---
 
-# R as a Calculator
 
-* You can use the `R` console like a calculator
 
-* Just type an arithmetic operation after `>` and hit `Enter`!
+# RStudio 환경
 
---
+RStudio를 실행하면 여러 창(윈도우)으로 구성되어 있음.
 
-* Some basic arithmetic first:
+- **콘솔(Console)**: 명령어를 입력하고 실행하는 창. `>` 프롬프트에서 R 코드 입력 후 실행
+
+- **스크립트 편집기 (Source Editor)**: `.R` 파일을 열거나 작성. 여러 줄의 코드를 작성/실행 가능
+
+- **환경 창 (Environment)**: 현재 사용 중인 변수와 데이터 프레임을 확인. 데이터 구조를 파악
+
+- **파일 및 플롯 창 (Files, Plots, Packages, Help)**
+    -   **Files**: 작업 디렉터리 내 파일 목록 확인
+    -   **Plots**: 생성된 그래프 확인
+    -   **Packages**: 설치된 패키지 목록 및 관리
+    -   **Help**: R 함수 및 패키지 도움말 검색 가능
+    
+---
+
+
+# R 콘솔과 프롬프트
+
+-   기본적인 실행 방법
+    -   `>` 뒤에 명령어 입력 후 `Enter`를 누르면 실행. 
 ```{r}
-4 + 1
-8 / 2
+2 + 2 
+```
+-   R 콘솔 사용 팁
+    -   **이전 명령어 불러오기**: 위쪽 화살표(`↑`) 키를 사용하면 이전에 입력한 명령어를 불러옴
+    -   **명령어 자동 완성**: Tab 키를 사용하여 변수 및 함수 자동 완성 가능.
+    -   **여러 줄 입력**:
+        -   긴 명령어 입력 시 자동으로 다음 줄로 넘어감 (`+` 기호 표시됨).
+        -   `Shift + Enter`를 누르면 줄바꿈만 하고 실행되지 않음.
+```{r}
+x <- 10 +
+       20 +
+       30  # Shift + Enter 사용 가능
+print(x)
 ```
 
+---
 
-* Great! What about this?
+# R 스크립트 (Script)
+
+-   **새로운 R 스크립트 생성**: `File > New File > R Script` 선택.
+-   **스크립트에서 코드 실행**:
+    -   `Ctrl + Enter`: 현재 줄 실행.
+    -   `Ctrl + Alt + R`: 전체 스크립트 실행.
+-   **주석 작성**: `#`을 사용하여 코드 설명 추가 가능.
+
 ```{r}
-2^3
-# by the way: this is a comment! R therefore disregards it
+# 변수 선언
+a <- 5
+b <- 10
+
+# 변수 더하기
+c <- a + b
+print(c)  # 결과: 15
 ```
+
 
 ---
 
 class: inverse
 
+`r countdown(minutes = 5, top = 0)`
+
+
 # Task 1
 
-```{r}
-countdown(minutes = 5, top = 0)
-```
+1. 새로운 R 스크립트를 생성하시오 (`File > New File > R Script`) 파일을 `lecture_intro.R`로 저장하시오.
 
-1. Create a new R script (File $\rightarrow$ New File $\rightarrow$ R Script). Save it somewhere as `lecture_intro.R`.
-
-1. Type the following code in your script and run it. To run the code press `Ctrl` or `Cmd` + `Enter` (you can either highlight the code or just put your cursor at the end of the line)
+1. 다음 코드를 스크립트에 입력하고 실행하시오. 코드를 실행하려면 `Ctrl` + `Enter` (코드를 강조 표시하거나 커서를 코드 줄 끝에 놓으면 실행).
     ```{r, eval = F}
     4 * 8
     ```
 
-1. Type the following code in your script and run it. What happens if you only run the first line of the code?
+1. 첫 번째 줄만 실행하면 무슨 일이 일어나는지 확인하시오. (객체(object) 생성)
     ```{r, eval = F}
-    x = 5 # equivalently x <- 5
+    x = 5 # 또는 x <- 5
     x
     ```
-Congratulations, you have created your first `R` "object"! Everything is an object in R! Objects are assigned using `=` or `<-`.
 
-1. Create a new object named `x_3` to which you assign the cube of `x`. Note that to assign you need to use `=` or `<-`. Use code to compute the cube, not a calculator.
+1. `x`의 세제곱을 할당하는 `x_3`이라는 새로운 객체를 만드시오. 할당할 때 `=` 또는 `<-`를 사용. 
 
 ---
 
-# Where to get Help?
+
+
+# 도움말 찾는 방법
 
 .pull-left[
 `R` built-in `help`:
@@ -435,56 +421,52 @@ In practice:
 ![Learning R](chapter_intro_files/figure-html/learning_path.png)
 ]
 
----
-
-# Collaborate!
-
-<img src="chapter_intro_files/figure-html/gator_error.jpg" alt="Gator collaboration" width="900" style="display: block; margin-left: auto; margin-right: auto"/>
 
 ---
 
-# R Packages
+# R 패키지 (Packages)
 
-* `R` users contribute add-on data and functions as *packages*
+* `R` 사용자는 추가 데이터와 기능을 *Packages* 형태로 제공할 수 있음.
 
-* Installing packages is easy! Just use the `install.packages` function:
+* 패키지 설치는 간단. `install.packages` 함수를 사용:
     ```{r, eval = FALSE}
     install.packages("ggplot2")
     ```
 
-* To *use* the contents of a packge, we must load it from our library using `library`:
-    ```{r, message = FALSE, warning = FALSE,eval=FALSE}
+* 패키지의 내용을 *사용*하려면, Library에서 불러와야 함. 이를 위해 `library` 함수를 사용:
+    ```{r, message = FALSE, warning = FALSE, eval=FALSE}
     library(ggplot2)
     ```
 
 ---
 
-# Vectors
+# 벡터 (Vectors)
 
 
 
 .pull-left[
-* The `c` function creates vectors, i.e. *one-dimensional arrays*.
+* `c` 함수를 사용하여 벡터, 즉 *1차원 배열*을 생성.
     ```{r}
     c(1, 3, 5, 7, 8, 9)
     ```
     
-* Coercion to unique types:
+* 여러 형태의 요소를 벡터로 만들 수 있음. 모두 문자로 변환
     ```{r}
     (v <- c(42, "Statistics", TRUE))
     ```
+    * 소괄호: 객체 값을 바로 출력    
 ]
 
 --
 
 .pull-right[
 
-* Creating a *range*
+* 범위(*range*) 생성
     ```{r}
     1:10
     ```
 
-* get vector elements with square bracket operator `[index]`:
+* 대괄호 연산자 `[index]`를 사용하여 벡터 요소를 가져오기: 
     ```{r}
     v[c(1,3)]
     ```
@@ -492,9 +474,9 @@ In practice:
 
 ---
 
-# `data.frame`'s
+# `data.frame`
 
-`data.frame`s represent **tabular data**. Like spreadsheets.
+`data.frame`은 **표 형식(tabular)의 데이터**를 나타냄. 엑셀 스프레드시트와 유사.
 
 ```{r}
 example_data = data.frame(x = c(1, 3, 5, 7),
@@ -503,49 +485,49 @@ example_data = data.frame(x = c(1, 3, 5, 7),
 example_data
 ```
 
-* A `data.frame` has 2 dimensions: *rows* and *columns*. Like a *matrix*. Can get elements with `[row_index,col_index]`.
+* `data.frame`은 *행(rows)* 과 *열(columns)* 의 두 가지 차원을 가짐. *행렬(matrix)* 과 유사하며, `[row_index,col_index]` 형식으로 요소를 선택 가능.
 
-* In practice, you will be importing files that contain the data into `R` rather than creating `data.frame`s by hand.
+* 실제로는 `data.frame`을 직접 생성하기보다는, 데이터를 포함하는 파일을 `R`로 불러오는 방식이 일반적.
 
 ---
 
 class: inverse
 
+`r countdown(minutes = 7, top = 0)`
+
 # Task 2
 
-`r countdown(minutes = 7, top = 0)`
 
 ```{r, echo=F}
 murders <- read.csv("https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1")
 ```
 
-1. Find out (using `help()` or google) how to import a .csv file. Do NOT use the "Import Dataset" button, nor install a package.
 
-1. Import [gun_murders.csv](https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1)<sup>1</sup> in a new object `murders`. This file contains data on gun murders by US state in 2010. (Hint: objects are created using `=` or `<-`).
+1. `help(read.csv)` 또는 구글을 사용하여 `.csv` 파일을 가져오는 방법을 찾아보시오. 단, "Import Dataset" 버튼을 사용하거나 패키지를 설치하지 마시오.
 
-1. Ensure that `murders` is a data.frame by running:
+1. gun_murders.csv (https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1) 파일을 새로운 객체 `murders`에 저장하시오. 이 파일은 2010년 미국 주별 총기 살인 사건 데이터를 포함. (힌트: 객체는 `=` 또는 `<-`를 사용하여 생성)
+
+1. `murders`가 `data.frame` 형식인지 확인하시오:
     ```{r,eval=F}
-    class(murder) # check class
+    class(murder) # 클래스 확인
     ```
 
-1. Find out what variables are contained in `murders` by running:
+1. `murders`에 포함된 변수를 확인하시오:
     ```{r, eval = F}
-    names(murders) # obtain variable names
+    names(murders) # 변수명 확인
     ```
 
-1. View the contents of `murders` by clicking on `murders` in your workspace. What does the `total` variable correspond to?
+1. 작업 공간에서 `murders`를 클릭하여 내용을 확인하시오 `total` 변수는 무엇을 의미하는가?
 
-.footnote[
-[1]: This dataset is taken from the `dslabs` package.
-]
+
 
 ---
 
-# `data.frame`s
+# `data.frame` ...continued
 
-Useful functions to describe a dataframe:
+Dataframe을 설명하는 데 유용한 함수
 ```{r}
-str(murders) # `str` describes structure of any R object
+str(murders) # `str` 함수는 R 객체의 구조를 설명
 ```
 
 --
@@ -569,46 +551,61 @@ ncol(murders) # number of columns
 
 ---
 
-# Accessing `data.frame` Columns
-    
-* To extract one column **as a vector** we can use the `$` operator (as in `murders$state`), or the square bracket operator `[which_index]` with name or position index:
+# 데이터프레임 열 (column) 접근하기
+
+* 한 개의 열을 **벡터 형태로 추출**하려면 `$` 연산자 (`murders$state`) 또는 대괄호 연산자 `[which_index]`를 이름이나 위치 인덱스와 함께 사용할 수 있음:
     ```{r}
-    first5 <- murders[1:5, ]  # take first 5 states only
-    first5$state  # extract with $ operator
-    first5[ ,"state"]  # extract with column name
-    first5[ ,1] # get first column
+    first5 <- murders[1:5, ]  # 처음 5개 주만 선택
+    first5$state  # $ 연산자로 추출
+    first5[ ,"state"]  # 열 이름으로 추출
+    first5[ ,1] # 첫 번째 열 가져오기
     ```
 
 --
 
 .pull-left[
-* Check `class` of an object:
+* 객체의 `class` 확인 (데이터구조):
     ```{r}
     class(murders)
     ```
 ]
 
---
-
 .pull-right[
-* `typeof` gives the R-internal data type:
+* `typeof` 함수: 데이터 저장 방식
     ```{r}
     typeof(murders)
     ```
 ]
 
+
+<!-- .footnote[ -->
+<!-- ```{r} -->
+<!-- x <- c(1, 2, 3)  # 숫자 벡터 -->
+<!-- class(x)   # 벡터의 추상적 유형 -->
+<!-- typeof(x)  # 내부 저장 방식 -->
+<!-- ``` -->
+<!-- ] -->
+
 ---
 
-# Subsetting `data.frames`
 
-* Subsetting a data.frame: `murders[row condition, column number]` or `murders[row condition, "column name"]`
+# `data.frames`: subset 만들기
+
+* 데이터프레임에서 특정 부분을 선택하려면 `murders[행 조건, 열 번호]` 또는 `murders[행 조건, "열 이름"]`을 사용.
     ```{r}
-    # Only keep states with over 500 gun murders and keep only the "state" and "total" variables
+    # 총기 살인 사건이 500건 이상인 주만 선택하고 "state"와 "total" 변수만 유지
     murders[murders$total > 500, c("state", "total")]
     
-    # Only keep California and Texas and keep only the "state" and "total" variables
+    # 캘리포니아와 텍사스만 선택하고 "state"와 "total" 변수만 유지
     murders[murders$state %in% c("California", "Texas"), c("state", "total")]
     ```
+    
+    * `subset` 명령어 사용 가능 (종종 더 직관적)
+    ```{r, eval=F}
+    subset(murders, total > 500, select = c(state, total))
+    subset(murders, state %in% c("California", "Texas"), select = c(state, total))
+    ```
+
 
 
 ---
@@ -619,197 +616,126 @@ class: inverse
 
 `r countdown(minutes = 10, top = 0)`
 
-1. How many observations are there in `murders`?
 
-1. How many variables? What are the data types of each variable?
+1. `murders` 데이터프레임에는 몇 개의 관측값(observations)이 있는가?
 
-1. Remember that the colon operator `1:10` is just short for *construct a sequence from `1` to `10`* (i.e. 1, 2, 3, etc). Create a new object `murders_2` containing the rows 10 to 25 of `murders`.
+1. 몇 개의 변수? 각 변수의 데이터 유형(data type)은 무엇인가?
 
-1. Create a new object `murders_3` which only contains the columns `state` and `total`. (Recall that `c` creates vectors.)
+1. `:` 연산자는 `1:10`처럼 사용하면 *1부터 10까지의 연속된 숫자 생성*을 의미함. 이를 활용하여 `murders`의 10번부터 25번 행을 포함하는 새로운 객체 `murders_2`를 만드시오.
 
-1. Create a `total_percap` variable equal to the number of murders per 10,000 inhabitants by running the following code.
+1. `state`와 `total` 열만 포함하는 `murders_3` 객체를 만드시오. (`c` 함수가 벡터를 생성함)
+
+1. 아래 코드를 실행하여 10,000명당 살인 사건 수를 나타내는 `total_percap` 변수를 생성하시오.
     ```{r}
     murders$total_percap = (murders$total / murders$population) * 10000
     ```
 
-Congratulations, you've created your first variable! Click on the `murders` object to see the new variable.
+`murders` 객체를 클릭하여 새 변수를 확인해 보시오.
+
 
 ---
 
 layout: false
-class: title-slide-section-red, middle
+class: middle
 
-# Course Details
-
----
-
-layout: true
-
-<div class="my-footer"><img src="../img/logo/ScPo-shield.png" style="height: 60px;"/></div> 
-
----
-
-# This Course
-
-- Teach you the basics of ***linear regression***, ***statistical inference*** and ***impact evaluation***.
-
---
-
-- Equip you with a framework to think more deeply about ***causality***.
-
---
-
-- Introduce you to the `R` software environment.
-
---
-
-- ⚠️ This is *not* a course about `R`.
-
---
-
-## Grading
-
-1. There will be ***five quizzes*** on Moodle roughly every two weeks $\rightarrow$ 40%
-
---
-
-1. There will be ***two take home exams / case studies*** $\rightarrow$ 60%
-
---
-
-1. There will be _no_ final exam 😅
-
----
-
-# Syllabus 🤞
-
-.pull-left[
-Lecture 1 (today): ***Introduction***
-
-*Quiz 1 (after lecture 2)*
-
-Lectures 2 and 3: ***Tidying, Visualising and Summarising Data***
-
-*Quiz 2*
-
-Lecture 4: ***Simple Linear Regression***
-
-Lecture 5: ***Introduction to Causality***
-
-*Midterm Project*
-
-Lecture 6: ***Multiple Linear Regression***
-
-Lecture 7: ***Linear Regression Extensions***
-]
-
-.pull-right[
-*Quiz 3*
-
-Lecture 8: ***Sampling***
-
-Lecture 9: ***Confidence Intervals and Hypothesis Testing***
-
-*Quiz 4*
-
-Lecture 10: ***Statistical Inference***
-
-Lecture 11: ***Regression Discontinuity***
-
-*Quiz 5*
-
-Lecture 12: ***Recap***
-
-*Final Project*
-]
-
----
-
-# Course Materials and Useful Resources
-
-&nbsp; &nbsp; &nbsp; &nbsp; [Book](https://scpoecon.github.io/ScPoEconometrics/) &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; [Slides](https://github.com/ScPoEcon/ScPoEconometrics-Slides) &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp; [Reading Suggestions](https://github.com/ScPoEcon/ScPoEconometrics-Slides/blob/master/syllabus.md) &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp; &nbsp; &nbsp; &nbsp;  [Interactive R Apps](https://github.com/ScPoEcon/ScPoApps) &nbsp; &nbsp; &nbsp; &nbsp;
--- | -- | --
-
---
-
-.pull-left[
-## Econometrics
-- [*Mastering Metrics* by Angrist and Pischke](https://uspc-spo.primo.exlibrisgroup.com/permalink/33USPC_SPO/1d4eftp/alma991003947949705808)
-- [*Introductory Econometrics: A Modern Approach* by Wooldridge](https://uspc-spo.primo.exlibrisgroup.com/permalink/33USPC_SPO/mgsi7h/alma991003442469705808)
-- [*Introduction to Econometrics* by Stock and Watson](https://uspc-spo.primo.exlibrisgroup.com/permalink/33USPC_SPO/mgsi7h/alma991003436429705808)
-- [*Causal Inference: The Mixtape* by Cunningham](https://mixtape.scunning.com/)
-- [Ben Lambert's youtube channel](https://www.youtube.com/user/SpartacanUsuals)
-]
-
-.pull-right[
-## Metrics and `R`
-- [ModernDive](https://moderndive.com/)
-- [Introduction to Econometrics with R](https://www.econometrics-with-r.org/)
-- [R for Data Science](https://r4ds.had.co.nz/)
-- [Awesome R Learning Resources](https://github.com/iamericfletcher/awesome-r-learning-resources)
-]
+# 강의 관련 정보
 
 
 ---
 
-# Course Policies
+
+## 성적 산출
+
+1. 거의 모든 수업에서 **in-class assignment (`task`)** 를 완성해서 제출 $\rightarrow$ 40%
+
+--
+
+1. ***기말 프로젝트*** $\rightarrow$ 60%
+
+--
+
+1. 출석은 확인하지 않음.
+
+--
+
+1. 시험은 없음.
+
+--
+
+1. 보통 A는 30%이내 (A+는 아주 뛰어난 경우), C는 총점 50점 미만의 경우, D/F 는 아주 저조한 경우 
+
+
+---
+
+# 수업 정책
 
 *Be nice. Be honest. Don't cheat.*
 
 --
 
-(BTW you should apply these principles outside of the classroom as well ***#lifeadvice*** 😉)
 
---
+**숙제는 늦게 제출하면 안됨**: 특별한 상황이 아닌 이상, 수업 끝나기 전에 모두 제출
+
+**부정행위 및 타인의 과제 무단 활용을 금지**: 이유 막론하고 C나 F를 받게 됨
+
+**그룹으로 협력**: 협력 장려, 다만 숙제나 프로젝트는 개인이 작성하여 제출
+
+
+
+---
+
+# 강의 계획서
 
 .pull-left[
-***Slack***
+주제 1: ***Introduction***
 
-We will ***exclusively*** use Slack for our interactions.
+주제 2 & 3: ***Tidying, Visualising and Summarising Data***
 
-Please ***DO NOT*** contact me by email (unless there's a legitimate reason to).
+주제 4: ***Simple Linear Regression***
 
-I will be checking Slack sparingly so please help one another!
+주제 5: ***Introduction to Causality*** (Optional)
+
+주제 6: ***Multiple Linear Regression***
 ]
-
---
 
 .pull-right[
-***Class conduct and expectations***
+주제 7: ***Linear Regression Extensions*** (Optional)
 
-*Late work:* Won't be accepted unless you have a very good reason.
+주제 8: ***Sampling***
 
-*Cheating:* You will get 0. Just don't cheat, it's honestly not worth it.
+주제 9: ***Confidence Intervals and Hypothesis Testing***
 
-*Work in groups:* You can/should work in groups of 2-3 on the quizzes.
+주제 10: ***Statistical Inference***
 ]
 
 ---
 
-# Mental Health
+# 기타 유용한 자료
 
-> ***Pay attention to your mental health in the same way you would your physical health.***
 
---
+.pull-left[
+## 통계/ 계량경제
+- [*Mastering Metrics* by Angrist and Pischke](https://uspc-spo.primo.exlibrisgroup.com/permalink/33USPC_SPO/1d4eftp/alma991003947949705808)
+- [*Introductory Econometrics: A Modern Approach* by Wooldridge](https://uspc-spo.primo.exlibrisgroup.com/permalink/33USPC_SPO/mgsi7h/alma991003442469705808)
+- [*Introductory Econometrics* by Kaplan](https://kaplandm.github.io/teach.html)
+]
 
-Seeking help is a sign of perceptive self-awareness, [not weakness](https://www.nytimes.com/2020/09/24/well/mind/cord-jefferson-emmy-black-mental-health.html).
+.pull-right[
+## `R`의 활용
+- [ModernDive](https://moderndive.com/)
+- [Introduction to Econometrics with R](https://www.econometrics-with-r.org/)
+- [Modern Statistics with R](https://www.modernstatisticswithr.com/)
+- [Practical Statistics for Data Scientists](https://github.com/gedeck/practical-statistics-for-data-scientists)
+- [R for Data Science](https://r4ds.had.co.nz/)
+- [Awesome R Learning Resources](https://github.com/iamericfletcher/awesome-r-learning-resources)
+]
 
---
 
-Don't hesitate to ***reach out*** to your friends, family, any professor (including myself!) if you feel the need.
 
-***Sciences Po*** offers free and confidential [psychological support services](https://www.sciencespo.fr/students/en/living/health/health-centre) with professionals.
-
----
-
-# Last But Not Least: Class Rep 
-
-.center[![:scale 60%](chapter_intro_files/figure-html/notme.gif)]
 
 ---
 
 class: title-slide-final, middle
-<!-- background-image: url(../img/logo/ScPo-econ.png) -->
 background-size: 250px
 background-position: 9% 19%
 
@@ -817,14 +743,6 @@ background-position: 9% 19%
 
 
 
-
-|                                                                                                            |                                   |
-| :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
-| <a href="https://github.com/ScPoEcon/ScPoEconometrics-Slides">.ScPored[<i class="fa fa-link fa-fw"></i>] | Slides |
-| <a href="https://scpoecon.github.io/ScPoEconometrics">.ScPored[<i class="fa fa-link fa-fw"></i>] | Book |
-| <a href="http://twitter.com/ScPoEcon">.ScPored[<i class="fa fa-twitter fa-fw"></i>]                          | @ScPoEcon                         |
-| <a href="http://github.com/ScPoEcon">.ScPored[<i class="fa fa-github fa-fw"></i>]                          | @ScPoEcon                       |
-
 ```{r makepdf, echo=FALSE,eval=FALSE}
-system("decktape chapter1.html chapter1.pdf --chrome-arg=--disable-web-security")
+system("decktape chapter_intro.html chapter_intro.pdf --chrome-arg=--disable-web-security")
 ```
