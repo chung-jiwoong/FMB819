@@ -8,6 +8,7 @@ format:
     # smaller: true
     scrollable: true
     chalkboard: true
+    transition: slide
     #incremental: true
     #lib_dir: libs
     css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
@@ -366,6 +367,10 @@ print(c)  # 결과: 15
 
 ## Task 1 {background-color="#ffebf0"}
 
+::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
+`r countdown(minutes = 5, top = 0)`
+:::
+
 1.  새로운 R 스크립트를 생성하시오 (`File > New File > R Script`) 파일을 `lecture_intro.R`로 저장하시오.
 
 2.  다음 코드를 스크립트에 입력하고 실행하시오. 코드를 실행하려면 `Ctrl` + `Enter` (코드를 강조 표시하거나 커서를 코드 줄 끝에 놓으면 실행).
@@ -492,6 +497,10 @@ ncol(example_data) # number of columns
 
 ## Task 2 {background-color="#ffebf0"}
 
+::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
+`r countdown(minutes = 7, top = 0)`
+:::
+
 ```{r, echo=F}
 murders <- read.csv("https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1")
 ```
@@ -571,6 +580,10 @@ subset(murders, state %in% c("California", "Texas"), select = c(state, total))
 ------------------------------------------------------------------------
 
 ## Task 3 {background-color="#ffebf0"}
+
+::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
+`r countdown(minutes = 10, top = 0)`
+:::
 
 1.  `murders` 데이터프레임에는 몇 개의 관측값(observations)이 있는가?
 
@@ -712,6 +725,10 @@ execute:
 -   [R for Data Science](https://r4ds.had.co.nz/)
 -   [Awesome R Learning Resources](https://github.com/iamericfletcher/awesome-r-learning-resources)
 
+
+
+
+# SEE YOU NEXT WEEK!
 
 
 ````{=html}

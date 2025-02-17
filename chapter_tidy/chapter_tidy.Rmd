@@ -1598,7 +1598,7 @@ Compute with:
 ```{r,eval = FALSE}
 var(x)
 ```
-]
+
 ---
 
 # Tabulating Data
