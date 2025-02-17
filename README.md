@@ -6,9 +6,9 @@
 
 ## Slides
 
-| Lecture | HTML | Tasks |
-|----------------------|:---------------:|:---------------:|-----------------|
 | Lecture 1: Introduction | [HTML](https://raw.githack.com/chung-jiwoong/ScPoMetrics-Slides/master/chapter_intro/chapter_intro.html) | [.Rmd]() |
+
+
 | Lectures 2/3: Tidying, Visualising and Summarising Data | [HTML](https://raw.githack.com/ScPoEcon/ScPoEconometrics-Slides/master/chapter_tidy/chapter_tidy.html)  | [.Rmd]() |
 | Lecture 4: Simple Linear Regression | [HTML](https://raw.githack.com/ScPoEcon/ScPoEconometrics-Slides/master/chapter_slr/chapter_slr.html) | [.Rmd]() |
 | Lecture 5: Introduction to Causality | [HTML](https://raw.githack.com/ScPoEcon/ScPoEconometrics-Slides/master/chapter_causality/chapter_causality.html) | [.Rmd]() |
