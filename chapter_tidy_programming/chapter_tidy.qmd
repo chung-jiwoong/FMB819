@@ -11,7 +11,7 @@ format:
     transition: slide
     #incremental: true
     #lib_dir: libs
-    #css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
+    css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
     #nature:
       # beforeInit: ["../js/ru_xaringan.js"]
       #highlightStyle: github
@@ -1465,4 +1465,17 @@ runTutorial('chapter2')
 ```
 ````
 
-# SEE YOU NEXT WEEK!
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <h2 style="color: #ff6666; text-align: center; font-family: 'Pacifico', cursive; font-size: 50px;">
+    SEE YOU NEXT WEEK!
+  </h2>
+</div>
+
+
+
+
+

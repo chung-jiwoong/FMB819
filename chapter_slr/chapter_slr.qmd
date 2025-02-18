@@ -11,7 +11,7 @@ format:
     transition: slide
     #incremental: true
     #lib_dir: libs
-    #css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
+    css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
     #nature:
       # beforeInit: ["../js/ru_xaringan.js"]
       #highlightStyle: github
@@ -56,3 +56,783 @@ countdown(
 ```
 
 
+## Today's Agenda
+
+* ***단순 선형 회귀 모형(Simple Linear Regression Model)*** 및 ***최소제곱법(Ordinary Least Squares, OLS)*** *추정* 소개.
+
+* 실증 분석: *학급 규모*와 *학생 성취도*의 관계
+
+* **인과적(causal)** 관계를 어떻게 밝힐 수 있을까?
+
+---
+
+## 학급 규모와 학생 성취도
+
+* 어떤 정책이 학생 학습 성취도 향상시키는가?
+
+* 학급 규모 축소는 *수십 년간* 교육 정책 논쟁의 핵심 주제였음.
+
+* [Joshua Angrist와 Victor Lavy (1999)](https://economics.mit.edu/files/8273)의 유명한 연구에서 사용된 데이터 분석. 해당 데이터는 [Raj Chetty와 Greg Bruich의 강의](https://opportunityinsights.org/course/)에서 제공됨.
+
+* 1991년 이스라엘 유대인 공립 초등학교 5학년생(10-11세)의 시험 점수와 학급/학교 특성 포함.
+
+* 국가 단위 시험을 통해 *수학* 및 (히브리어) *읽기* 능력 평가했으며, 원점수는 1-100 사이 척도로 변환됨.
+
+
+---
+
+## Task 1 {background-color="#ffebf0"}
+
+::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
+`r countdown(minutes = 7, top = 0)`
+:::
+
+1. 데이터를 [여기](https://www.dropbox.com/s/wwp2cs9f0dubmhr/grade5.dta?dl=1)에서 불러와 `grades`로 저장.  
+   *힌트: `haven` 라이브러리의 `read_dta` 함수 사용해서 `.dta` 형식의 파일 불러오면 됨.*  
+   (참고: *.dta*는 [*Stata*](https://www.stata.com/)에서 사용하는 데이터 파일 확장자임.)
+
+1. 데이터셋 설명:
+
+   * 관측 단위는? 즉, 각 행이 무엇을 의미하는지?  
+   * 총 몇 개의 관측치가 있는지?  
+   * 데이터셋을 확인하고 어떤 변수가 있는지? `avgmath`와 `avgverb`는 뭘 의미하는지?  
+   * `skimr` 패키지의 `skim` 함수 사용해서 `classize`, `avgmath`, `avgverb` 변수에 대한 기본적인 요약 통계 확인함.  
+     (*힌트: `dplyr`의 `select` 사용해서 변수 선택한 후 `%>%`로 `skim()` 적용하면 됨.*)
+
+1. 학급 규모와 학생 성취도 간 실제 (선형) 관계에 대해 어떤 관계가 있을 것이라 생각하는가? 
+
+1. 학급 규모와 수학/언어 점수 간 상관관계는? 
+
+```{r, echo=FALSE}
+# 데이터 불러오기
+grades = read_dta(file = "https://www.dropbox.com/s/wwp2cs9f0dubmhr/grade5.dta?dl=1")
+```
+
+---
+
+
+## 학급 규모와 학생 성취도: Scatter plot
+
+:::: columns
+
+:::{.column width="50%"}
+```{r, echo=FALSE, fig.height=6}
+g_math = ggplot(grades, aes(x = classize, y = avgmath)) + 
+    geom_point(size = 2, alpha = 0.5) +
+    xlim(0,45) +
+    ylim(0, 100) +
+    labs(
+      x = "Class size",
+      y = "Average score",
+      title = "Mathematics") +
+    theme_bw(base_size = 20)
+g_math
+```
+:::
+
+:::{.column width="50%"}
+```{r, echo=FALSE,fig.height=6}
+g_verb = ggplot(grades, aes(x = classize, y = avgverb)) + 
+    geom_point(size = 2, alpha = 0.5) +
+    xlim(0,45) +
+    ylim(0, 100) +
+    labs(x = "Class size",
+         y = "Average score",
+         title = "Reading") +
+    theme_bw(base_size = 20)
+g_verb
+```
+::: 
+
+::::
+
+- 상관계수에서 보듯이 어느 정도 양의 관계 있음. 학급 규모별 평균 점수 계산해서 더 명확하게 살펴보자
+
+
+---
+
+## 학급 규모와 학생 성취도: Binned Scatter Plot
+
+:::: columns
+:::{.column width="50%"}
+```{r, echo=FALSE, fig.height=6}
+# Compute average scores by class size
+grades_avg_cs <- grades %>%
+  group_by(classize) %>%
+  summarise(avgmath_cs = mean(avgmath),
+            avgverb_cs = mean(avgverb))
+
+g_math_cs = ggplot(grades_avg_cs, aes(x = classize, y = avgmath_cs)) + 
+    geom_point(size = 2) +
+    xlim(0, 45) +
+    ylim(0, 100) +
+    labs(
+      x = "Class size",
+      y = "Average score",
+      title = "Mathematics") +
+    theme_bw(base_size = 20)
+g_math_cs
+```
+:::
+
+:::{.column width="50%"}
+```{r, echo=FALSE,fig.height=6}
+g_verb_cs = ggplot(grades_avg_cs, aes(x = classize, y = avgverb_cs)) + 
+    geom_point(size = 2) +
+    xlim(0, 45) +
+    ylim(0, 100) +
+    labs(
+      x = "Class size",
+      y = "Average score",
+      title = "Reading") +
+    theme_bw(base_size = 20)
+g_verb_cs
+```
+::: 
+::::
+
+
+---
+
+
+## 학급 규모와 학생 성취도: Regression Line
+
+학급 규모와 학생 성취도의 관계를 시각적으로 요약하는 방법: **산점도를 통과하는 선(Line)**
+
+::::{.columns}
+::: {.column width="50%"}
+```{r, echo=FALSE, fig.align='left', fig.height=4, fig.width=7}
+g_math_cs +
+    ylim(50, 80) +
+    theme_bw(base_size = 14) +
+    geom_hline(yintercept = 65, col = "#d90502")
+```
+:::
+
+::: {.column width="50%"} 
+```{r,echo=FALSE, fig.align='left', fig.height=4,fig.width=7}
+g_math_cs +
+  ylim(50, 80) +
+  theme_bw(base_size = 14) +
+  geom_abline(intercept = 55,slope = 0.6, col = "#d90502")
+```
+:::
+::::
+
+- 어느 선이 더 나은가? 어떤 기준으로 더 나은가?
+
+
+---
+
+## 단순 선형 회귀 (Simple Linear Regression)
+
+지금까지 분석을 좀 더 공식적으로 정리하자면
+
+* 두 변수 간의 관계에 관심 있음:
+
+    - 결과변수 (종속변수, dependent variable): *average mathematics score* $(y)$
+    
+    - 설명변수 (독립변수, independent variable): *class size* $(x)$
+
+
+* 각 학급 $i$에 대해 $x_i$와 $y_i$를 관측할 수 있음.  
+  따라서 학급 규모와 평균 수학 점수의 *결합 분포(joint distribution)*를 시각화할 수 있음.
+
+* 현재 이 관계를 **선(line)** 하나로 요약하고 있음.  
+  절편 $b_0$와 기울기 $b_1$을 갖는 선의 방정식은 다음과 같음:
+
+$$
+\widehat{y}_i = b_0 + b_1 x_i
+$$
+
+* $\widehat{y}_i$는 *관측값 $i$에서의 예측값(prediction)*을 의미함.  
+  즉, 주어진 회귀 직선에 따라 우리가 $y_i$를 어떻게 예측하는지 보여줌.
+
+---
+
+
+
+## 직선의 방정식
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+b_0 = 32
+b_1 = 4.1
+space = .5
+
+base_plot <- ggplot() +
+    geom_abline(slope = b_1, intercept = b_0) +
+    scale_x_continuous(limits = c(-5,10), expand = c(0,0)) +
+    scale_y_continuous(limits = c(0,100), expand = c(0,0)) +
+    theme_bw(base_size = 16) +
+    annotate(geom = "text", x = -4.3, y = 94, label = "y", parse = TRUE, size = 8, hjust = 0) +
+    annotate(geom = "text", x = -4.3 + space, y = 94, label = "=", size = 8, hjust = 0) +
+    annotate(geom = "text", x = -4.3 + 2*space, y = 94, label = "b[0]", color = "#DE9854", parse = TRUE, size = 8, hjust = 0) +
+    annotate(geom = "text", x = -4.3 + 2*space + .6, y = 94, label = "+", size = 8, hjust = 0) +
+    annotate(geom = "text", x = -4.3 + 3*space + .6, y = 94, label = "b[1]", parse = TRUE, color = "#d90502", size = 8, hjust = 0) +
+    annotate(geom = "text", x = -4.3 + 4*space + .6, y = 94, label = "x", parse = TRUE, size = 8, hjust = 0)
+base_plot
+```
+
+---
+
+## 직선의 방정식
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+library('latex2exp')
+plot_b_0 <- base_plot + 
+    annotate(geom = "segment", x = 0, xend = 0, y = 0, yend = b_0, arrow = arrow(angle = 12, type = "closed"), color = "#DE9854") +
+    annotate(geom = "segment", x = -5, xend = 0, y = b_0, yend = b_0, arrow = arrow(angle = 12, type = "closed", ends = "first"), color = "#DE9854") +
+    scale_y_continuous(limits = c(0,100), expand = c(0,0), breaks = c(0,25,b_0,50,75,100), labels = c("0","25",parse(text = TeX("$b_0$")),"50","75","100"), minor_breaks = seq(0,100,12.5)) +
+    theme(axis.text.y = element_text(color = c("grey30", "grey30", "#DE9854", "grey30", "grey30", "grey30")),
+          axis.ticks.y = element_line(color = c("grey30", "grey30", "#DE9854", "grey30", "grey30", "grey30")),
+          panel.grid.minor = element_line(color = c("grey92", "grey92", "grey92", "grey92", "grey92", "grey92")),
+          panel.grid.major.y = element_line(color = c("grey92", "grey92", NA, "grey92", "grey92", "grey92")))
+plot_b_0
+```
+
+---
+
+## 직선의 방정식
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+plot_b_0 + 
+    annotate(geom = "segment", x = 5, xend = 6, y = b_0+5*b_1, yend = b_0+5*b_1, arrow = arrow(angle = 12, type = "closed", length = unit(.4, "cm")), color = "#d90502") +
+    annotate(geom = "text", x = 5.5, y = 49, label = "1", size = 5, color = "#d90502") +
+    annotate(geom = "segment", x = 6, xend = 6, y = b_0+5*b_1, yend = b_0+6*b_1, arrow = arrow(angle = 12, type = "closed", length = unit(.2, "cm")), color = "#d90502") +
+    annotate(geom = "text", x = 6.5, y = (b_0+6*b_1 + b_0+5*b_1)/2, label = "b[1]", parse = TRUE, size = 6, color = "#d90502")
+```
+
+---
+
+
+## Simple Linear Regression: 잔차(Residual)
+
+* 만약 모든 데이터가 직선 위에 있다면, $\widehat{y}_i = y_i$.
+
+
+```{r, echo = FALSE, fig.height = 4,fig.width=7}
+x <- runif(50, min  = 0, max = 1)
+y <- 1 * x
+
+data <- data.frame(y = y,
+                   x = x)
+
+plot_ex <- data %>% ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  xlim(0, 1) +
+  ylim(0, 1) +
+  labs(x = "x",
+       y = "y") +
+  theme_bw(base_size = 14)
+plot_ex
+```
+
+---
+
+## Simple Linear Regression: 잔차(Residual)
+
+* 만약 모든 데이터가 직선 위에 있다면, $\widehat{y}_i = y_i$.
+
+```{r, echo = FALSE, fig.height = 4,fig.width=7}
+plot_ex + geom_line(color = "#d90502")
+```
+
+---
+
+## Simple Linear Regression: 잔차(Residual)
+
+* 만약 모든 데이터가 직선 위에 있다면, $\widehat{y}_i = y_i$.
+
+* 대부분의 경우 *종속변수* $(y)$는 우리가 선택한 *독립변수* $(x)$들에 의해서만 설명되지 않음, $\widehat{y}_i \neq y_i$, 즉 "오차(error)"가 항상 발생. 이 오차를 잔차(residual)라 부름.
+
+
+* $(x_i,y_i)$에서의 잔차를 $e_i$로 표시.
+
+
+* *실제 데이터* $(x_i, y_i)$는 따라서 *예측값 + 잔*차로 표현될 수 있음
+
+  $$
+  y_i = \widehat y_i + e_i = b_0 + b_1 x_i + e_i
+  $$
+
+---
+
+## Simple Linear Regression: Graphically
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+plot_1 <- g_math_cs +
+    ylim(50, 80) +
+    theme_bw(base_size = 14)
+plot_1
+```
+
+---
+
+## Simple Linear Regression: Graphically
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+plot_2 <- plot_1 +
+  stat_smooth(data = grades_avg_cs, method = "lm", se = FALSE, colour = "#d90502") +
+  annotate("text", x = 6.5, y = 64, label = "hat(y)", parse = TRUE, colour = "#d90502", size = 6)
+plot_2
+```
+
+---
+
+## Simple Linear Regression: Graphically
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+g_math_cs +
+    ylim(50, 80) +
+    theme_bw(base_size = 14) +
+  stat_smooth(method = "lm", se = FALSE, colour = "#d90502") +
+  annotate("text", x = 6.5, y = 64, label = "hat(y)", parse = TRUE, colour = "#d90502", size = 6) +
+  geom_point(data = grades_avg_cs %>% filter(classize == 17), aes(x = classize, y = avgmath_cs), color = "#d90502", size = 4) +
+  annotate("text", x = 17, y = 69, label = "y[x = 17]", parse = TRUE, colour = "#d90502", size = 6)
+```
+
+---
+
+## Simple Linear Regression: Graphically
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+math_class_reg <- lm(avgmath_cs ~ classize, data = grades_avg_cs)
+math_class_reg <- broom::augment(math_class_reg)
+
+g_math_cs +
+    ylim(50, 80) +
+    theme_bw(base_size = 14) +
+  stat_smooth(method = "lm", se = FALSE, colour = "#d90502") +
+  annotate("text", x = 6.5, y = 64, label = "hat(y)", parse = TRUE, colour = "#d90502", size = 6) +
+  geom_point(data = grades_avg_cs %>% filter(classize == 17), aes(x = classize, y = avgmath_cs), color = "#d90502", size = 4) +
+  annotate("text", x = 17, y = 69, label = "y[x = 17]", parse = TRUE, colour = "#d90502", size = 6) +
+  geom_segment(data = math_class_reg %>% filter(classize == 17),
+               aes(xend = classize, yend = .fitted), color = "#d90502", size = 1) +
+  annotate("text", x = 18, y = 65.55, label = "e[x = 17]", parse = TRUE, colour = "#d90502", size = 6)
+```
+
+---
+
+## Simple Linear Regression: Graphically
+
+```{r, echo = F, fig.width = 10, fig.height = 5}
+g_math_cs +
+    ylim(50, 80) +
+    theme_bw(base_size = 14) +
+  stat_smooth(method = "lm", se = FALSE, colour = "#d90502") +
+  annotate("text", x = 6.5, y = 64, label = "hat(y)", parse = TRUE, colour = "#d90502", size = 6) +
+  geom_segment(data = math_class_reg,
+               aes(xend = classize, yend = .fitted), color = "#d90502", size = 0.5)
+```
+
+---
+
+## Simple Linear Regression: Graphically
+
+```{r, echo = F, out.width = "100%", fig.height = 4.5}
+g_math_cs +
+    ylim(50, 80) +
+    theme_bw(base_size = 14) +
+  stat_smooth(method = "lm", se = FALSE, colour = "#d90502") +
+  annotate("text", x = 6.5, y = 64, label = "hat(y)", parse = TRUE, colour = "#d90502", size = 6) +
+  geom_segment(data = math_class_reg,
+               aes(xend = classize, yend = .fitted), color = "#d90502", size = 0.5)
+```
+
+<p style="text-align: center; font-weight: bold; font-size: 35px; color: #d90502;">무엇을 "최소화"하는 직선을 구해야할까?</strong>
+
+---
+
+
+## Ordinary Least Squares (OLS) 추정
+
+
+- 오차(error)의 부호 $(+/-)$가 서로 상쇄. **제곱 잔차(squared residuals)**를 고려
+$$\forall i \in [1,N], e_i^2 = (y_i - \widehat y_i)^2 = (y_i - b_0 - b_1 x_i)^2$$
+
+- $\sum_{i = 1}^N e_1^2 + \dots + e_N^2$ 값이 **최소화하는** $(b_0, b_1)$ 값을 선택.
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE,fig.width=7,fig.height = 3.5}
+g_math_cs +
+    ylim(50, 80) +
+    xlim(0, 50) +
+    theme_bw(base_size = 14) +
+    stat_smooth(method = "lm", se = FALSE, colour = "darkgreen") +
+  coord_fixed(ratio = 0.65)
+```
+
+
+---
+
+
+
+## Ordinary Least Squares (OLS) 추정
+
+* 오차(error)의 부호 $(+/-)$가 서로 상쇄. **제곱 잔차(squared residuals)**를 고려
+$$\forall i \in [1,N], e_i^2 = (y_i - \widehat y_i)^2 = (y_i - b_0 - b_1 x_i)^2$$
+
+* $\sum_{i = 1}^N e_1^2 + \dots + e_N^2$ 값이 **최소화하는** $(b_0, b_1)$ 값을 선택.
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE,fig.width=7,fig.height = 3.5}
+g_math_cs +
+    ylim(50, 80) +
+    xlim(0, 50) +
+    theme_bw(base_size = 14) +
+    stat_smooth(method = "lm", se = FALSE, colour = "darkgreen") +
+    geom_rect(data = math_class_reg,
+              aes(
+              xmin = classize,
+              xmax = classize + abs(.resid)*0.65,
+              ymin = avgmath_cs,
+              ymax = avgmath_cs - .resid),
+              fill = "darkgreen",
+              alpha = 0.3) +
+  coord_fixed(ratio = 0.65)
+```
+
+---
+
+
+## Ordinary Least Squares (OLS) 추정
+
+```{r, echo = F, out.extra = 'style="border: none;"'}
+knitr::include_url("https://gustavek.shinyapps.io/reg_simple/")
+```
+
+---
+
+## Ordinary Least Squares (OLS) 추정
+
+```{r, echo = F, out.extra = 'style="border: none;"'}
+knitr::include_url("https://gustavek.shinyapps.io/SSR_cone/")
+```
+
+---
+
+
+## Ordinary Least Squares (OLS) 계수 공식
+
+* **OLS**: *잔차 제곱합(squared residuals)*을 최소화하는 추정 방법.
+
+* 그렇다면, 절편 $b_0$와 기울기 $b_1$의 공식은?
+
+
+* 하나의 독립변수만 있는 경우: 
+
+> 기울기 (Slope): $b_1^{OLS} = \frac{cov(x,y)}{var(x)}$
+
+> 절편 (Intercept):$b_0^{OLS} = \bar{y} - b_1\bar{x}$
+
+
+
+* 잔차 제곱합을 최소화하는 문제를 풀어 유도됨.  
+  자세한 수학적 과정은 [여기](https://www.youtube.com/watch?v=Hi5EJnBHFB4)에서 확인.
+
+---
+
+## Ordinary Least Squares (OLS) 해석
+
+종속 변수 $(y)$와 독립 변수 $(x)$가 **숫자형(numeric)**이라고 가정
+
+
+> 절편 $(b_0)$: **$x = 0$일 때 예측된 $y$ 값 $(\widehat{y})$.**
+
+> 기울기 $(b_1)$: **$x$가 한 단위 증가할 때, $y$ 값이 *평균적으로* 변하는 정도**
+
+
+* 두 변수 간 *"관련이 있음(associated)"*이라는 표현을 사용함.  
+  즉, **$b_1$을 $x$의 $y$에 대한 인과적 영향(causal impact)으로 해석하면 안 됨.**  
+  이를 주장하려면 특정 조건이 충족되어야 함. 
+ 
+* 또한 $x$의 단위(unit)에 따라 $b_1$의 해석과 크기(magnitude)가 달라질 수 있음.
+
+
+* **$x$의 단위가 무엇인지 명확히 해야 함**
+
+---
+
+
+## OLS with `R`
+
+* OLS는 `lm`함수를 사용하여 추정가능
+
+```{r, echo = TRUE, eval = FALSE}
+lm(formula = dependent variable ~  independent variable, data = data.frame containing the data)
+```
+
+
+***학급 규모와 학생 성적***
+
+- 다음과 같은 선형 모형을 OLS로 추정하자: $\textrm{average math score}_i = b_0 + b_1 \textrm{class size}_i + e_i$
+
+:::: columns
+:::{.column width="50%"}
+```{r echo=T, eval = FALSE}
+# OLS regression of class size on average maths score
+lm(avgmath_cs ~ classize, grades_avg_cs) 
+```
+:::
+
+:::{.column width="50%"}
+```{r echo=F, eval = TRUE}
+# OLS regression of class size on average maths score
+lm(avgmath_cs ~ classize, grades_avg_cs) 
+```
+:::
+::::
+
+---
+
+
+## Ordinary Least Squares (OLS): Prediction
+
+```{r echo=F, eval = TRUE}
+# OLS regression of class size on average maths score
+lm(formula = avgmath_cs~classize, data = grades_avg_cs)
+```
+
+
+이 결과가 의미하는 것 ($_i$ 첨자 생략):
+
+
+$$
+\begin{aligned}
+\widehat y &= b_0 + b_1 x \\
+\widehat {\text{average math score}} &= b_0 + b_1 \cdot \text{class size} \\
+\widehat {\text{average math score}} &= 61.11 + 0.19 \cdot \text{class size}
+\end{aligned}
+$$
+
+
+학생 수가 26명일 때 예상되는 평균 성적은?
+
+$$
+\begin{aligned}
+\widehat {\text{average math score}} &= 61.11 + 0.19 \cdot 26 \\
+\widehat {\text{average math score}} &= 66.08
+\end{aligned}
+$$
+
+---
+
+## Task 2 {background-color="#ffebf0"}
+
+::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
+`r countdown(minutes = 5, top = 0)`
+:::
+
+
+다음 코드를 실행하여 데이터를 학급 규모(class size) 수준에서 집계:
+
+```{r, eval = F}
+grades_avg_cs <- grades %>%
+  group_by(classize) %>%
+  summarise(avgmath_cs = mean(avgmath),
+            avgverb_cs = mean(avgverb))
+```
+
+1. R평균 언어 점수(종속 변수)를 학급 규모(독립 변수)에 대해 회귀분석(regress) 수행. 회귀 계수(coefficients)를 해석할 것
+
+1. 이전 회귀분석에서 OLS 계수 $b_0$ 및 $b_1$을 직접 계산 (공식 이용). (힌트: `cov`, `var`, `mean` 함수 사용.)
+
+1. 학급 규모가 0일 때, 예측된 평균 언어 점수는 얼마인가?
+(이 값이 실제로 의미가 있는가?
+
+1. 학급 규모가 30명일 때, 예측된 평균 언어 점수는 얼마인가?
+
+---
+
+## 예측값과 잔차의 성질 (Predictions and Residuals: Properties)
+
+::::{.columns}
+::: {.column width="50%"}
+* $\widehat{y}_i$의 평균은 $\bar{y}$와 같음
+    $$\begin{align} \frac{1}{N} \sum_{i=1}^N \widehat{y}_i &= \frac{1}{N} \sum_{i=1}^N b_0 + b_1 x_i \\ &= b_0 + b_1  \bar{x}  = \bar{y} \end{align}$$
+
+* 잔차(residuals)의 평균(또는 합)은 0.
+  $$\begin{align} \frac{1}{N} \sum_{i=1}^N e_i &= \frac{1}{N} \sum_{i=1}^N (y_i - \widehat y_i) \\ &= \bar{y} - \frac{1}{N} \sum_{i=1}^N \widehat{y}_i \\\ &= 0 \end{align}$$
+:::
+
+::: {.column width="50%"}
+* 설명 변수(regressor)와 잔차는 정의상 서로 상관이 없음.
+
+  $$Cov(x_i, e_i) = 0$$
+
+
+* 예측값과 잔차는 상관이 없음.
+
+  $$\begin{align} Cov(\widehat y_i, e_i) &= Cov(b_0 + b_1x_i, e_i) \\ &= b_1Cov(x_i,e_i) \\ &= 0 \end{align}$$
+  
+  이는 $Cov(a + bx, y) = bCov(x,y)$라는 성질 때문.
+:::
+::::
+
+---
+
+
+## 선형성 가정: 데이터 시각화의 중요성
+
+* **공분산(covariance)**, **상관계수(correlation)**, 그리고 **단순 OLS 회귀**는 두 변수 간 **선형 관계(linear relationships)**만 측정한다는 점을 기억해야 함.
+
+* 서로 *완전히 동일한* 상관계수 및 회귀선을 갖는 두 개의 데이터셋이 *완전히 다르게* 보일 수도 있음.
+
+
+---
+
+
+## 선형성 가정: Anscombe의 예제
+
+* Francis Anscombe (1973)는 통계적으로 *완전히 동일한* 네 개의 데이터셋을 만들었음.  
+  하지만 **시각적으로 보면 완전히 다름!**
+
+:::{.columns}
+:::: {.column width="60%"}
+```{r, echo=FALSE, fig.height=4}
+##-- now some "magic" to do the 4 regressions in a loop:
+ff <- y ~ x
+mods <- setNames(as.list(1:4), paste0("lm", 1:4))
+covs = data.frame(dataset = 1:4, cov = 0.0)
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  mods[[i]] <- lmi <- lm(ff, data = anscombe)
+  covs[i,"cov"] = eval(parse(text = paste0("cov(anscombe$x",i,",anscombe$y",i,")")))
+  covs[i,"var(y)"] = eval(parse(text = paste0("var(anscombe$y",i,")")))
+  covs[i,"var(x)"] = eval(parse(text = paste0("var(anscombe$x",i,")")))
+}
+
+op <- par(mfrow = c(2, 2), mar = 0.1+c(4,4,1,1), oma =  c(0, 0, 0, 0))
+for(i in 1:4) {
+  ff[2:3] <- lapply(paste0(c("y","x"), i), as.name)
+  plot(ff, data = anscombe, col = "black", pch = 21, bg = "#d90502", cex = 1.2,
+       xlim = c(3, 19), ylim = c(3, 13),main=paste("dataset",i))
+  abline(mods[[i]], col = "#DE9854")
+}
+par(op)
+```
+::::
+
+:::: {.column width="40%"}
+```{r,echo = FALSE}
+ch = kable(round(covs,3))
+ch %>%
+   kable_styling(bootstrap_options = "striped", font_size = 20)
+```
+:::: 
+:::
+
+---
+
+
+## 데이터에서 비선형 관계? (Nonlinear Relationships in Data?)
+
+:::{.columns}
+:::: {.column width="50%"}
+* 회귀 분석에서 비선형 관계를 반영할 수 있음.
+
+* 방법: *고차항(higher order term)*을 추가하면 됨.  
+    $$
+    y_i = b_0 + b_1 x_i + b_2 x_i^2 + e_i
+    $$
+
+* 이는 **다중 회귀(multiple regression)**의 한 형태임. 
+::::
+
+:::: {.column width="50%"}
+* 예를 들어, 아래 데이터를 사용해 이전 회귀 모델을 적용한다고 가정함:
+```{r non-line-cars-ols2, echo=FALSE, fig.height=6}
+data(mtcars)
+mtcars %>% ggplot(aes(x = hp, y = mpg)) +
+    geom_point() +
+    stat_smooth(method='lm', formula = y~poly(x,2), se = FALSE, aes(colour="Nonlinear")) +
+    stat_smooth(method='lm', se = FALSE, aes(colour="Linear")) +
+    scale_colour_manual(name="legend", values=c("darkgreen", "#d90502")) +
+    labs(x = "x",
+         y = "y",
+         title = "Nonlinear relationship between x and y") +
+    theme_bw(base_size = 20) +
+    theme(legend.position="top") +
+    theme(legend.title = element_blank())
+```
+::::
+:::
+
+---
+
+
+## 분산 분석 (Analysis of Variance)
+
+* 다음 관계를 기억할 것:  
+  $$
+  y_i = \widehat{y}_i + e_i
+  $$
+
+* 이를 기반으로 **다음과 같은 분산 분해(variance decomposition)**를 얻음:
+  $$\begin{align} 
+  Var(y) &= Var(\widehat{y} + e)\\
+  &= Var(\widehat{y}) + Var(e) + 2 Cov(\widehat{y},e)\\
+  &= Var(\widehat{y}) + Var(e)
+  \end{align}$$
+
+* 이유는 다음과 같음:
+  * $Var(x+y) = Var(x) + Var(y) + 2Cov(x,y)$
+  * $Cov(\hat{y},e) = 0$
+
+* 총 변동 (SST) = 모델이 설명한 변동 (SSE) + 설명되지 않은 변동 (SSR)
+
+
+---
+
+## 적합도 평가 (Goodness of Fit)
+
+* __$R^2$__ 값은 **모델이 데이터를 얼마나 잘 설명하는지(fit)** 측정하는 지표.
+
+$$
+R^2 = \frac{\text{variance explained}}{\text{total variance}} = \frac{SSE}{SST} = 1 - \frac{SSR}{SST}\in[0,1]
+$$
+
+    * $R^2$ 값이 **1에 가까울수록**, 모델의 **설명력(explanatory power)**이 ***매우 높음***을 의미함.
+    
+    * $R^2$ 값이 **0에 가까울수록**, 모델의 **설명력**이 ***매우 낮음***을 의미함.
+
+
+    * 예를 들어, $R^2 = 0.5$이면, **$x$의 변화가 $y$의 변화 중 50%를 설명함**을 의미함.
+
+* 낮은 $R^2$ 값이 무조건 모델이 쓸모없다는 뜻은 아님! **예측(predictive power)**보다는 **인과적 메커니즘(causal mechanisms)**에 더 초점을 맞추는 경우가 많음.
+
+
+* $R^2$ 값은 **인과 관계(causal relationship)를 나타내는 지표가 아님!** 회귀 모델에서 높은 $R^2$ 값이 있다고 해서, $x$가 $y$를 인과적으로 설명한다고 볼 수 없음!
+
+---
+
+
+## Task 3 {background-color="#ffebf0"}
+
+::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
+`r countdown(minutes = 10, top = 0)`
+:::
+
+1. `avgmath_cs`를 `classize`에 대해 회귀(regress)하고 결과를 `math_reg` 객체에 저장.
+
+1. `summary(math_reg)`를 실행하여 **(다중) $R^2$** 값을 확인함. 이 값의 의미를 해석할 것.
+
+1. `classize`와 `avgmath_cs` 간 **상관계수(correlation)**를 제곱하여 계산. 이 값은 **단일 설명변수**(one regressor)를 가진 회귀에서 $R^2$와 상관계수 간의 관계를 보여줌.
+
+1. 1번과 2번을 `avgverb_cs`에 대해 반복함.  
+   어떤 시험에서 학급 규모의 분산이 학생 점수의 분산을 더 많이 설명하는지 비교함.
+
+1. (Optional) `broom` 패키지를 설치 및 로드한 후, `math_reg`를 `augment()` 함수에 전달하여 새로운 객체에 저장함.  
+   `avgmath_cs`의 분산(SST)과 예측값 `.fitted`의 분산(SSE)을 사용하여 **$R^2$** 값을 직접 계산함. (이전 슬라이드의 공식을 참고할 것.)
+   
+
+
+---
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <h2 style="color: #ff6666; text-align: center; font-family: 'Pacifico', cursive; font-size: 50px;">
+    SEE YOU NEXT WEEK!
+  </h2>
+</div>
