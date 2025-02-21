@@ -1064,9 +1064,10 @@ $$
 
 ------------------------------------------------------------------------
 
+
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-::: {style="display: flex; justify-content: center; align-items: center; height: 100vh;"}
+::: {style="display: flex; justify-content: center; align-items: center; height: 70vh;"}
 <h2 style="color: #ff6666; text-align: center; font-family: &#39;Pacifico&#39;, cursive; font-size: 50px;">
 
 THE END!
