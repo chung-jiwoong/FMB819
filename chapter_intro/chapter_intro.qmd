@@ -621,7 +621,11 @@ murders$total_percap = (murders$total / murders$population) * 10000
 
 ## 수업 정책
 
-<p style="text-align: center; font-weight: bold; font-size: 1.5em;">Be nice. Be honest. Don't cheat.</p>
+<p style="text-align: center; font-weight: bold; font-size: 1.5em;">
+
+Be nice. Be honest. Don't cheat.
+
+</p>
 
 <br>
 
@@ -694,11 +698,11 @@ execute:
 
 주제 4: ***Simple Linear Regression***
 
-주제 5: ***Introduction to Causality*** (Optional)
+주제 5: ***Introduction to Causality***
 
 주제 6: ***Multiple Linear Regression***
 
-주제 7: ***Linear Regression Extensions*** (Optional)
+주제 7: ***Linear Regression Extensions***
 
 주제 8: ***Sampling***
 
@@ -725,19 +729,17 @@ execute:
 -   [R for Data Science](https://r4ds.had.co.nz/)
 -   [Awesome R Learning Resources](https://github.com/iamericfletcher/awesome-r-learning-resources)
 
-
-
----
+------------------------------------------------------------------------
 
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-  <h2 style="color: #ff6666; text-align: center; font-family: 'Pacifico', cursive; font-size: 50px;">
-    SEE YOU NEXT WEEK!
-  </h2>
-</div>
+::: {style="display: flex; justify-content: center; align-items: center; height: 100vh;"}
+<h2 style="color: #ff6666; text-align: center; font-family: &#39;Pacifico&#39;, cursive; font-size: 50px;">
 
+SEE YOU NEXT WEEK!
 
+</h2>
+:::
 
 ````{=html}
 <!-- 

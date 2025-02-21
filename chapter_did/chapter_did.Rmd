@@ -218,11 +218,11 @@ ck1994 <- njmin
 ```
 
 ```{r, echo = TRUE, eval = FALSE}
-  # install package that contains the cleaned data
+# install package that contains the cleaned data
 remotes::install_github("b-rodrigues/diffindiff")
-  # load package
+ # load package
 library(diffindiff)
-  # load data
+# load data
 ck1994 <- njmin
 ```
 ]
@@ -256,6 +256,7 @@ class: inverse
 ---
 
 # Card and Krueger DiD: Tabular Results
+
 
 .center[__Average Employment Per Store Before and After the Rise in NJ Minimum Wage__]
 ```{r, echo = FALSE, eval = TRUE}
