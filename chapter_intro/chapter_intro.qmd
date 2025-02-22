@@ -8,7 +8,8 @@ format:
     # smaller: true
     scrollable: true
     chalkboard: true
-    transition: slide
+    transition: fade
+    transition-speed: fast
     #incremental: true
     #lib_dir: libs
     css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
@@ -177,6 +178,8 @@ ggplot(data = gapminder_dplyr,
 ------------------------------------------------------------------------
 
 ## Animated Plotting
+
+
 
 ```{r, example: gganimate, include = F, cache = T}
 # The package for animating ggplot2
@@ -353,7 +356,7 @@ RStudio를 실행하면 여러 창(윈도우)으로 구성되어 있음.
     -   `Ctrl + Alt + R`: 전체 스크립트 실행.
 -   **주석 작성**: `#`을 사용하여 코드 설명 추가 가능.
 
-```{r}
+```{r, echo=T}
 # 변수 선언
 a <- 5
 b <- 10
@@ -694,21 +697,27 @@ execute:
 
 주제 1: ***Introduction***
 
-주제 2 & 3: ***Tidying, Visualising and Summarising Data***
+주제 2: ***Tidying, Visualising and Summarising Data***
 
-주제 4: ***Simple Linear Regression***
+주제 3: ***Simple Linear Regression***
 
-주제 5: ***Introduction to Causality***
+주제 4: ***Introduction to Causality***
 
-주제 6: ***Multiple Linear Regression***
+주제 5: ***Multiple Linear Regression***
 
-주제 7: ***Linear Regression Extensions***
+주제 6: ***Linear Regression Extensions***
 
-주제 8: ***Sampling***
+주제 7: ***Sampling***
 
-주제 9: ***Confidence Intervals and Hypothesis Testing***
+주제 8: ***Confidence Intervals and Hypothesis Testing***
 
-주제 10: ***Statistical Inference***
+주제 9: ***Statistical Inference***
+
+주제 10: ***Difference-in-Differences*** (Optional)
+
+주제 11: ***Regression Discontinuity Deisign*** (Optional)
+
+주제 12: ***Instrumental Variables*** (Optional)
 
 ------------------------------------------------------------------------
 

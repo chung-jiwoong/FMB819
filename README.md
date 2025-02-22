@@ -68,6 +68,6 @@
   
   
   
-
+- 본 강의노트는 [ScPoEconometrics]를 바탕으로 만들어졌음
 
 

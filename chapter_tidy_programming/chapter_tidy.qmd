@@ -8,7 +8,8 @@ format:
     # smaller: true
     scrollable: true
     chalkboard: true
-    transition: slide
+    transition: fade
+    transition-speed: fast
     #incremental: true
     #lib_dir: libs
     css: [default, "../css/kubs.css", "../css/kubs-fonts.css"]
