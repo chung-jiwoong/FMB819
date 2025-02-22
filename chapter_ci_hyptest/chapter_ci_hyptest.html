@@ -970,8 +970,8 @@
 <ul>
 <li><p><strong><em>가설 검정(hypothesis test)</em></strong> 은 <strong><em>두 개의 경쟁 가설</em></strong> 을 비교하는 과정임:</p>
 <ul>
-<li><p><strong><em>귀무가설(null hypothesis, <span class="math inline">\(H_0\)</span>)</em></strong>: 일반적으로 차이가 없다는 가설을 의미함.</p></li>
-<li><p><strong><em>대립가설(alternative hypothesis, <span class="math inline">\(H_A\)</span> 또는 <span class="math inline">\(H_1\)</span>)</em></strong>: 연구자가 주장하는 가설.</p></li>
+<li><p><strong><em>귀무가설(null hypothesis,</em></strong> <span class="math inline">\(H_0\)</span>): 일반적으로 차이가 없다는 가설을 의미함.</p></li>
+<li><p><strong><em>대립가설(alternative hypothesis,</em></strong> <span class="math inline">\(H_A\)</span> 또는 <span class="math inline">\(H_1\)</span>): 연구자가 주장하는 가설.</p></li>
 </ul></li>
 <li><p>앞선 승진 실험의 경우: <span class="math display">\[\begin{align}H_0&amp;: p_m - p_f = 0\\H_A&amp;: p_m - p_f &gt; 0,\end{align}\]</span> 여기서 <span class="math inline">\(p_m =\)</span> 남성의 승진 비율, <span class="math inline">\(p_f =\)</span> 여성의 승진 비율.</p>
 <ul>
@@ -991,7 +991,7 @@
 <ul>
 <li><em>앞선 사례에서</em>: 실제 관측된 차이 <span class="math inline">\(\hat{p}_m - \hat{p}_f = 0.292 = 29.2\%\)</span>포인트.</li>
 </ul></li>
-<li><p><strong><em>귀무분포(null distribution)</em></strong>: <em>귀무가설 <span class="math inline">\(H_0\)</span> 이 참이라고 가정했을 때</em> 검정 통계량의 표본 분포.</p>
+<li><p><strong><em>귀무분포(null distribution)</em></strong>: <em>귀무가설</em> <span class="math inline">\(H_0\)</span> 이 참이라고 가정했을 때 검정 통계량의 표본 분포.</p>
 <ul>
 <li><em>앞선 사례에서</em>: 차별이 없다고 가정했을 때 <span class="math inline">\(\hat{p}_m - \hat{p}_f\)</span> 가 가질 수 있는 모든 값들의 분포.</li>
 <li>바로 우리가 앞서 본 분포임.</li>
@@ -1021,14 +1021,14 @@
 <h2>가설 검정의 표기법과 정의</h2>
 <ul>
 <li><p>귀무가설 <span class="math inline">\(H_0\)</span> 을 기각할지 여부를 결정하기 위해 <strong><em>유의수준</em></strong>을 설정함.</p></li>
-<li><p><strong><em>유의수준 <span class="math inline">\((\alpha)\)</span></em></strong>: p-값의 <em>컷오프 기준</em> 역할을 함.</p>
+<li><p><strong><em>유의수준</em></strong> <span class="math inline">\((\alpha)\)</span>: p-값의 <em>컷오프 기준</em> 역할을 함.</p>
 <ul>
 <li>일반적으로 사용되는 값: <span class="math inline">\(\alpha = 0.01\)</span>, <span class="math inline">\(0.05\)</span>, 또는 <span class="math inline">\(0.1\)</span>.</li>
 </ul></li>
 <li><p><strong><em>판단 기준</em></strong>:</p>
 <ul>
-<li><p>p-값이 <strong><em>유의수준 <span class="math inline">\(\alpha\)</span>보다 작으면</em></strong>, “<span class="math inline">\(\alpha\)</span> 유의수준에서 귀무가설을 기각한다.”</p></li>
-<li><p>반대로, p-값이 <strong><em><span class="math inline">\(\alpha\)</span>보다 크면</em></strong>, “<span class="math inline">\(\alpha\)</span> 유의수준에서 귀무가설을 기각할 수 없다.”라고 표현함.</p></li>
+<li><p>p-값이 <strong><em>유의수준</em></strong> <span class="math inline">\(\alpha\)</span>보다 작으면, “<span class="math inline">\(\alpha\)</span> 유의수준에서 귀무가설을 기각한다.”</p></li>
+<li><p>반대로, p-값이 <span class="math inline">\(\alpha\)</span>보다 크면, “<span class="math inline">\(\alpha\)</span> 유의수준에서 귀무가설을 기각할 수 없다.”라고 표현함.</p></li>
 </ul></li>
 <li><p><strong><em>해석</em></strong>: 귀무가설이 참일 때 관측값이 <em>너무 일어날 가능성이 낮다면</em>, 해당 가설이 <strong><em>거짓일 가능성이 높음</em></strong>.</p></li>
 <li><p>우리 예제에서 이를 어떻게 적용하는지 살펴보자.</p></li>
@@ -1044,7 +1044,7 @@
 <section id="p-value-계산-및-의사-결정" class="slide level2">
 <h2>p-value 계산 및 의사 결정</h2>
 <ul>
-<li>p-값의 정의를 다시 떠올려 보자: <strong><em>귀무가설 <span class="math inline">\(H_0\)</span>이 참이라고 가정할 때, 우리가 얻은 통계량보다 </em>같거나 더 극단적인* 값을 관측할 확률.</strong>*</li>
+<li>p-값의 정의를 다시 떠올려 보자: <strong><em>귀무가설</em></strong> <span class="math inline">\(H_0\)</span>이 참이라고 가정할 때, 우리가 얻은 통계량보다 같거나 더 극단적인* 값을 관측할 확률.*</li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
@@ -1116,9 +1116,9 @@
 <section class="slide level2">
 
 <p><link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet"></p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
 <h2 style="color: #ff6666; text-align: center; font-family: 'Pacifico', cursive; font-size: 50px;">
-<p>SEE YOU NEXT WEEK!</p>
+<p>THE END!</p>
 </h2>
 </div>
 </section>
@@ -1323,10 +1323,10 @@
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'slide',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
+        transitionSpeed: 'fast',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)

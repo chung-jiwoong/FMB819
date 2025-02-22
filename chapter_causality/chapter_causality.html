@@ -1030,7 +1030,7 @@ ATE = \mathop{\mathbb{E}}(\delta_i) = \mathop{\mathbb{E}}(\delta) = \delta
 <section id="task-1" class="slide level2 scrollable" data-background-color="#ffebf0">
 <h2>Task 1</h2>
 <div style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;">
-<p></p><div class="countdown" id="timer_e1f5564b" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
+<p></p><div class="countdown" id="timer_152dfc7a" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
 </div>
 <p><strong>📊 직접 생성한 데이터를 이용하여 다양한 지표와 편향을 계산</strong></p>
 <p>📂 <strong>1. 데이터 불러오기 및 변수 생성</strong></p>
@@ -1176,7 +1176,7 @@ SDO = \mathop{\mathbb{E}}(Y_i^1|D_i=1) - \mathop{\mathbb{E}}(Y_i^0|D_i=0) = ATE
 <section id="task-2" class="slide level2" data-background-color="#ffebf0">
 <h2>Task 2</h2>
 <div style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;">
-<p></p><div class="countdown" id="timer_224c2eda" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
+<p></p><div class="countdown" id="timer_44cea289" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
 </div>
 <p>📂 1. 데이터 불러오기 - <a href="https://www.dropbox.com/s/bf1fog8yasw3wjj/star_data.csv?dl=1"><strong>STAR 데이터 다운로드</strong></a><br>
 - 데이터를 <code>star_df</code> 객체에 저장.<br>
@@ -1421,7 +1421,7 @@ ATE &amp;= \mathbb{E}[\textrm{math score} | \text{small}_i = 1] - \mathbb{E}[\te
 <section id="task-3" class="slide level2" data-background-color="#ffebf0">
 <h2>Task 3</h2>
 <div style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;">
-<p></p><div class="countdown" id="timer_853a3ec2" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
+<p></p><div class="countdown" id="timer_74c3a0ce" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
 </div>
 <p>📌 1. 아래 코드를 실행하여 <strong>1학년(grade == “1”)이며, 일반 학급(regular) 또는 소규모 학급(small)에 속한 학생들만 선택</strong>.</p>
 <p>📊 2. 두 그룹의 평균 수학 점수 및 차이 계산 (Base R 사용)</p>
@@ -1485,7 +1485,8 @@ ATE &amp;= \mathbb{E}[\textrm{math score} | \text{small}_i = 1] - \mathbb{E}[\te
 <section id="인과-관계를-찾아가는-길" class="slide level2">
 <h2>🔍 인과 관계를 찾아가는 길</h2>
 <p>✅ <strong><em>데이터를 어떻게 다룰까?</em></strong> : 읽기(Read), 정리(Tidy), 시각화(Visualize)…</p>
-<p>✅ <strong><em>변수간 관계를 어떻게 요약할까?</em></strong> …단순 선형 회귀(Simple Linear Regression) 계속 학습 :contruction: ✅ 인과 관계(Causality)란 무엇인가?</p>
+<p>🚧 <strong><em>변수간 관계를 어떻게 요약할까?</em></strong> …단순 선형 회귀(Simple Linear Regression) …계속 학습</p>
+<p>✅ 인과 관계(Causality)란 무엇인가?</p>
 <p>❌ 전체 모집단을 관측하지 못하면 어떻게 할까?</p>
 <p>❌ 우리의 연구 결과가 단순한 무작위(Randomness) 때문일 수도 있을까?</p>
 <p>❌ 실제로 외생성을 어떻게 찾아낼 수 있을까?</p>
@@ -1493,9 +1494,9 @@ ATE &amp;= \mathbb{E}[\textrm{math score} | \text{small}_i = 1] - \mathbb{E}[\te
 <section class="slide level2">
 
 <p><link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet"></p>
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="display: flex; justify-content: center; align-items: center; height: 70vh;">
 <h2 style="color: #ff6666; text-align: center; font-family: 'Pacifico', cursive; font-size: 50px;">
-<p>SEE YOU NEXT WEEK!</p>
+<p>THE END!</p>
 </h2>
 </div>
 </section></section>
@@ -1715,10 +1716,10 @@ ATU &amp;= \mathop{\mathbb{E}}(\delta_i | D_i = 0) \\
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'slide',
+        transition: 'fade',
 
         // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
+        transitionSpeed: 'fast',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
