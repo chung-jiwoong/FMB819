@@ -1,7 +1,7 @@
 ---
 title: "FMB819: R을 이용한 데이터분석"
 subtitle: "<span style='font-size:1.5em; color:#a01616;'>Introduction</span>"
-date: "`r Sys.Date()`"
+# date: "`r Sys.Date()`"
 format:
   revealjs:
     slide-number: true
