@@ -162,17 +162,17 @@ head(gapminder_dplyr, n = 5)
 -   그래프를 그리기 `gapminder_dplyr`:
 
 ```{r, echo = TRUE}
-ggplot(data = gapminder_dplyr, 
-       mapping = aes(x = mean_lifeexp,
-                     y = mean_gdppercap,
-                     color = continent,
-                     size = count)) +
-  geom_point(alpha = 1/2) +
-  labs(x = "Average life expectancy",
-       y = "Average GDP per capita",
-       color = "Continent",
-       size = "Nb of countries") +
-  theme_bw()
+ggplot(data = gapminder_dplyr,  # 데이터셋을 지정
+       mapping = aes(x = mean_lifeexp,  # x축: 평균 기대수명
+                     y = mean_gdppercap,  # y축: 평균 1인당 GDP
+                     color = continent,  # 색상: 대륙별 구분
+                     size = count)) +  # 점 크기: 국가 수
+  geom_point(alpha = 1/2) +  # 반투명한 점 그래프 생성 (alpha=0.5)
+  labs(x = "Average life expectancy",  # x축 라벨 설정
+       y = "Average GDP per capita",  # y축 라벨 설정
+       color = "Continent",  # 색상 범례 제목 설정
+       size = "Nb of countries") +  # 크기 범례 제목 설정
+  theme_bw()  # 흰색 배경의 테마 적용 (black & white theme)
 ```
 
 ------------------------------------------------------------------------
@@ -370,9 +370,6 @@ print(c)  # 결과: 15
 
 ## Task 1 {background-color="#ffebf0"}
 
-::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
-`r countdown(minutes = 5, top = 0)`
-:::
 
 1.  새로운 R 스크립트를 생성하시오 (`File > New File > R Script`) 파일을 `lecture_intro.R`로 저장하시오.
 
@@ -398,9 +395,14 @@ print(c)  # 결과: 15
 `R` built-in `help`:
 
 ``` r
-?log #? in front of function
-help(lm)   # help() is equivalent
-??plot  # get all help on keyword "plot"
+?lm  # 함수 앞에 ?를 붙이면 해당 함수의 도움말(설명서)을 확인할 수 있음
+help(lm)   # help() 함수도 동일한 역할을 하며, 특정 함수의 도움말을 출력함
+
+args(lm)  # lm 함수의 인자(argument) 목록을 출력함
+
+example(lm)  # lm 함수의 사용 예제(example)를 실행하여 출력함
+
+??lm  # "lm"과 관련된 모든 도움말 문서를 검색하여 표시함
 ```
 
 In practice:
@@ -411,7 +413,7 @@ In practice:
 
 ## 패키지 (Packages)
 
--   `R` 사용자는 추가 데이터와 기능을 *Packages* 형태로 제공할 수 있음.
+-   `R 패키지는 특정 기능을 제공하는 코드와 데이터를 포함한 소프트웨어 패키지
 
 -   패키지 설치는 간단. `install.packages` 함수를 사용:
 
@@ -423,6 +425,12 @@ In practice:
 
     ``` r
     library(ggplot2)
+    ```
+    
+-   업데이트 하려면
+
+    ``` r
+    update.packages(ggplot2)
     ```
 
 ------------------------------------------------------------------------
@@ -445,17 +453,190 @@ c(1, 3, 5, 7, 8, 9)
 * 소괄호: 객체 값을 바로 출력    
 ```
 
--   범위(*range*) 생성
+- 변수 목록보기/삭제하기
+
+```{r, echo=T}
+ls()
+rm()
+```
+
+- 벡터의 결합
+
+```{r, echo=T}
+v1 <- c(1, 2, 3)
+v2 <- c(4, 5, 6)
+c(v1, v2)
+```
+
+
+-   수열 (*range*) 생성
 
 ```{r, echo=T}
 1:10
+10:1
+seq(0:10)
+seq(0, 10, by=2.5)
+seq(0, 10, length=5)
+rep(1, 5)
 ```
 
--   대괄호 연산자 `[index]`를 사용하여 벡터 요소를 가져오기:
+---
+
+## 비교 논리 연산
 
 ```{r, echo=T}
-v[c(1,3)]
+x <- 1
+x < 2
+
+x/0
+
+-x/0
+
+0/0
 ```
+
+**Scalar vs. Scalar 비교**
+
+```{r, echo=T}
+a <- 3
+a == pi
+
+a != pi
+
+a > pi
+
+a <= pi
+```
+
+
+**Vector vs. Vector 비교**
+
+```{r, echo=T}
+v <- c(0, pi, 4)
+w <- rep(pi, 3)
+v == w
+
+v != w
+
+v < w
+
+v >= w
+```
+
+
+**Scalar vs. Vector 비교**
+
+```{r, echo=T}
+v == pi
+
+v > pi
+
+any(v == pi)
+
+all(v == 0)
+
+```
+
+---
+
+## 비교 논리 연산
+
+**is.~ () 함수 : 개체의 속성을 묻는 함수**
+
+```{r, echo=T}
+u <- c(3, pi, Inf, NULL, NaN, NA)
+
+is.finite(u)
+
+is.infinite(u)
+
+is.na(u)
+
+is.nan(u)
+
+is.null(u)
+```
+
+- `na`는 not available, `nan`는 not a number (예, 0/0, sqrt(-1)).
+
+- `nan`은 숫자형 결측값, `na`는 모든 종류의 결측값이라 생각하면 됨. 
+
+
+---
+
+## 인덱스의 활용
+
+
+-   대괄호 연산자 `[index]`를 사용하여 벡터 요소 위치 지정. 제외하고 싶은 원소의 인덱스는 음수 `-`로.
+
+```{r, echo=T}
+fib <- c(0,1,1,2,3,5,8)
+fib[1]
+
+fib[1:3]
+
+fib[c(1,2,4)]
+
+fib[-1]
+
+fib[c(-1,-2)]
+
+fib < 5
+
+fib[fib < 5]
+```
+
+- `which()`: 조건에 해당하는 인덱스를 찾아줌
+
+```{r, echo=T}
+which(fib == 0)
+
+which(fib > 2)
+
+which.max(fib)
+
+which.min(fib)
+```
+
+---
+
+
+## R 연산자 정리
+
+**1. 기초 연산자 (Arithmetic Operators)**
+
+| 연산자 | 설명 | 예제 | 결과 |
+|--------|------|------|------|
+| `+` | 덧셈 | `5 + 3` | `8` |
+| `-` | 뺄셈 | `5 - 3` | `2` |
+| `*` | 곱셈 | `5 * 3` | `15` |
+| `/` | 나눗셈 | `5 / 3` | `1.6667` |
+| `^` 또는 `**` | 거듭제곱 | `5^3` | `125` |
+| `%%` | 나머지 | `5 %% 3` | `2` |
+| `%/%` | 정수 나눗셈 | `5 %/% 3` | `1` |
+
+**2. 관계 연산자 (Comparison Operators)**
+
+| 연산자 | 설명 | 예제 | 결과 |
+|--------|------|------|------|
+| `==` | 같음 | `5 == 3` | `FALSE` |
+| `!=` | 다름 | `5 != 3` | `TRUE` |
+| `>` | 초과 | `5 > 3` | `TRUE` |
+| `<` | 미만 | `5 < 3` | `FALSE` |
+| `>=` | 이상 | `5 >= 3` | `TRUE` |
+| `<=` | 이하 | `5 <= 3` | `FALSE` |
+
+**3. 논리 연산자 (Logical Operators)**
+
+| 연산자 | 설명 | 예제 | 결과 |
+|--------|------|------|------|
+| `&` | AND (벡터 연산) | `c(TRUE, FALSE) & c(TRUE, TRUE)` | `TRUE FALSE` |
+| `|` | OR (벡터 연산) | `c(TRUE, FALSE) | c(FALSE, FALSE)` | `TRUE FALSE` |
+| `!` | NOT | `!TRUE` | `FALSE` |
+| `&&` | AND (단일 값 연산) | `TRUE && FALSE` | `FALSE` |
+| `||` | OR (단일 값 연산) | `TRUE || FALSE` | `TRUE` |
+
+
 
 ------------------------------------------------------------------------
 
@@ -476,7 +657,7 @@ example_data
 
 ------------------------------------------------------------------------
 
-## `data.frame` ...continued
+## `data.frame`
 
 Dataframe을 설명하는 데 유용한 함수
 
@@ -500,10 +681,6 @@ ncol(example_data) # number of columns
 
 ## Task 2 {background-color="#ffebf0"}
 
-::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
-`r countdown(minutes = 7, top = 0)`
-:::
-
 ```{r, echo=F}
 murders <- read.csv("https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1")
 ```
@@ -512,7 +689,7 @@ murders <- read.csv("https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?d
 
 2.  [gun_murders.csv](https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1) 파일을 새로운 객체 `murders`에 저장하시오. 이 파일은 2010년 미국 주별 총기 살인 사건 데이터를 포함. (힌트: 객체는 `=` 또는 `<-`를 사용하여 생성)
 
-3.  `murders`가 `data.frame` 형식인지 확인하시오:
+3.  `murders`가 `data.frame` 형식인지 확인하시오 (`class(murders)`):
 
 4.  `murders`에 포함된 변수를 확인하시오:
 
@@ -584,9 +761,6 @@ subset(murders, state %in% c("California", "Texas"), select = c(state, total))
 
 ## Task 3 {background-color="#ffebf0"}
 
-::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"}
-`r countdown(minutes = 10, top = 0)`
-:::
 
 1.  `murders` 데이터프레임에는 몇 개의 관측값(observations)이 있는가?
 
@@ -603,6 +777,9 @@ murders$total_percap = (murders$total / murders$population) * 10000
 ```
 
 `murders` 객체를 클릭하여 새 변수를 확인해 보시오.
+
+
+
 
 # 강의 관련 정보
 
@@ -634,7 +811,7 @@ Be nice. Be honest. Don't cheat.
 
 **숙제는 늦게 제출하면 안됨**: 특별한 상황이 아닌 이상, 수업 끝나기 전에 모두 제출
 
-**부정행위 및 타인의 과제 무단 활용을 금지**: C나 F를 받게 됨
+**부정행위 및 타인의 과제 무단 활용을 금지**: C나 F 중 불리한 등급 받게 됨
 
 **그룹으로 협력**: 협력 장려, 다만 숙제나 프로젝트는 개인이 작성하여 제출
 

@@ -10,7 +10,6 @@
 <link href="chapter_intro_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <meta name="dcterms.date" content="2025-02-22">
   <title>FMB819: R을 이용한 데이터분석</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -407,7 +406,6 @@
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">2025-02-22</p>
 </section>
 <section id="welcome-to-fmb-819" class="slide level2 scrollable">
 <h2>Welcome to FMB 819!</h2>
@@ -535,17 +533,17 @@
 <li>그래프를 그리기 <code>gapminder_dplyr</code>:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_dplyr, </span>
-<span id="cb5-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mean_lifeexp,</span>
-<span id="cb5-3"><a href=""></a>                     <span class="at">y =</span> mean_gdppercap,</span>
-<span id="cb5-4"><a href=""></a>                     <span class="at">color =</span> continent,</span>
-<span id="cb5-5"><a href=""></a>                     <span class="at">size =</span> count)) <span class="sc">+</span></span>
-<span id="cb5-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb5-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Average life expectancy"</span>,</span>
-<span id="cb5-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Average GDP per capita"</span>,</span>
-<span id="cb5-9"><a href=""></a>       <span class="at">color =</span> <span class="st">"Continent"</span>,</span>
-<span id="cb5-10"><a href=""></a>       <span class="at">size =</span> <span class="st">"Nb of countries"</span>) <span class="sc">+</span></span>
-<span id="cb5-11"><a href=""></a>  <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_dplyr,  <span class="co"># 데이터셋을 지정</span></span>
+<span id="cb5-2"><a href=""></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> mean_lifeexp,  <span class="co"># x축: 평균 기대수명</span></span>
+<span id="cb5-3"><a href=""></a>                     <span class="at">y =</span> mean_gdppercap,  <span class="co"># y축: 평균 1인당 GDP</span></span>
+<span id="cb5-4"><a href=""></a>                     <span class="at">color =</span> continent,  <span class="co"># 색상: 대륙별 구분</span></span>
+<span id="cb5-5"><a href=""></a>                     <span class="at">size =</span> count)) <span class="sc">+</span>  <span class="co"># 점 크기: 국가 수</span></span>
+<span id="cb5-6"><a href=""></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>) <span class="sc">+</span>  <span class="co"># 반투명한 점 그래프 생성 (alpha=0.5)</span></span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Average life expectancy"</span>,  <span class="co"># x축 라벨 설정</span></span>
+<span id="cb5-8"><a href=""></a>       <span class="at">y =</span> <span class="st">"Average GDP per capita"</span>,  <span class="co"># y축 라벨 설정</span></span>
+<span id="cb5-9"><a href=""></a>       <span class="at">color =</span> <span class="st">"Continent"</span>,  <span class="co"># 색상 범례 제목 설정</span></span>
+<span id="cb5-10"><a href=""></a>       <span class="at">size =</span> <span class="st">"Nb of countries"</span>) <span class="sc">+</span>  <span class="co"># 크기 범례 제목 설정</span></span>
+<span id="cb5-11"><a href=""></a>  <span class="fu">theme_bw</span>()  <span class="co"># 흰색 배경의 테마 적용 (black &amp; white theme)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <img data-src="chapter_intro_files/figure-revealjs/unnamed-chunk-2-1.svg" class="quarto-figure quarto-figure-center r-stretch" width="960"></section>
@@ -692,9 +690,6 @@
 </section>
 <section id="task-1" class="slide level2 scrollable" data-background-color="#ffebf0">
 <h2>Task 1</h2>
-<div style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;">
-<p></p><div class="countdown" id="timer_d2117702" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
-</div>
 <ol type="1">
 <li><p>새로운 R 스크립트를 생성하시오 (<code>File &gt; New File &gt; R Script</code>) 파일을 <code>lecture_intro.R</code>로 저장하시오.</p></li>
 <li><p>다음 코드를 스크립트에 입력하고 실행하시오. 코드를 실행하려면 <code>Ctrl</code> + <code>Enter</code> (코드를 강조 표시하거나 커서를 코드 줄 끝에 놓으면 실행).</p>
@@ -708,20 +703,27 @@
 <section id="도움말-찾는-방법" class="slide level2">
 <h2>도움말 찾는 방법</h2>
 <p><code>R</code> built-in <code>help</code>:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>?log <span class="co">#? in front of function</span></span>
-<span id="cb19-2"><a href=""></a><span class="fu">help</span>(lm)   <span class="co"># help() is equivalent</span></span>
-<span id="cb19-3"><a href=""></a>??plot  <span class="co"># get all help on keyword "plot"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a>?lm  <span class="co"># 함수 앞에 ?를 붙이면 해당 함수의 도움말(설명서)을 확인할 수 있음</span></span>
+<span id="cb19-2"><a href=""></a><span class="fu">help</span>(lm)   <span class="co"># help() 함수도 동일한 역할을 하며, 특정 함수의 도움말을 출력함</span></span>
+<span id="cb19-3"><a href=""></a></span>
+<span id="cb19-4"><a href=""></a><span class="fu">args</span>(lm)  <span class="co"># lm 함수의 인자(argument) 목록을 출력함</span></span>
+<span id="cb19-5"><a href=""></a></span>
+<span id="cb19-6"><a href=""></a><span class="fu">example</span>(lm)  <span class="co"># lm 함수의 사용 예제(example)를 실행하여 출력함</span></span>
+<span id="cb19-7"><a href=""></a></span>
+<span id="cb19-8"><a href=""></a>??lm  <span class="co"># "lm"과 관련된 모든 도움말 문서를 검색하여 표시함</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In practice:</p>
 
 <img data-src="chapter_intro_files/figure-html/learning_path.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Learning R</p></section>
 <section id="패키지-packages" class="slide level2">
 <h2>패키지 (Packages)</h2>
 <ul>
-<li><p><code>R</code> 사용자는 추가 데이터와 기능을 <em>Packages</em> 형태로 제공할 수 있음.</p></li>
+<li><p>`R 패키지는 특정 기능을 제공하는 코드와 데이터를 포함한 소프트웨어 패키지</p></li>
 <li><p>패키지 설치는 간단. <code>install.packages</code> 함수를 사용:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"ggplot2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>패키지의 내용을 <em>사용</em>하려면, Library에서 불러와야 함. 이를 위해 <code>library</code> 함수를 사용:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>업데이트 하려면</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">update.packages</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="벡터-vectors" class="slide level2">
@@ -730,7 +732,7 @@
 <li><code>c</code> 함수를 사용하여 벡터, 즉 <em>1차원 배열</em>을 생성.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href=""></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1 3 5 7 8 9</code></pre>
 </div>
@@ -739,39 +741,400 @@
 <li>여러 형태의 요소를 벡터로 만들 수 있음. 모두 문자로 변환</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href=""></a>(v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="st">"Statistics"</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a>(v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42</span>, <span class="st">"Statistics"</span>, <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "42"         "Statistics" "TRUE"      </code></pre>
 </div>
 </div>
 <pre><code>* 소괄호: 객체 값을 바로 출력    </code></pre>
 <ul>
-<li>범위(<em>range</em>) 생성</li>
+<li>변수 목록보기/삭제하기</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href=""></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href=""></a><span class="fu">ls</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre><code>[1] "a"               "b"               "c"               "gapminder"      
+[5] "gapminder_dplyr" "v"               "x"              </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href=""></a><span class="fu">rm</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>벡터의 결합</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb31-2"><a href=""></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>)</span>
+<span id="cb31-3"><a href=""></a><span class="fu">c</span>(v1, v2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5 6</code></pre>
 </div>
 </div>
 <ul>
-<li>대괄호 연산자 <code>[index]</code>를 사용하여 벡터 요소를 가져오기:</li>
+<li>수열 (<em>range</em>) 생성</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>v[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "42"   "TRUE"</code></pre>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 10  9  8  7  6  5  4  3  2  1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">seq</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10 11</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by=</span><span class="fl">2.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.0  2.5  5.0  7.5 10.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a><span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length=</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  0.0  2.5  5.0  7.5 10.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a><span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 1 1 1</code></pre>
 </div>
 </div>
+</section>
+<section id="비교-논리-연산" class="slide level2">
+<h2>비교 논리 연산</h2>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb45-2"><a href=""></a>x <span class="sc">&lt;</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a>x<span class="sc">/</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Inf</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="sc">-</span>x<span class="sc">/</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -Inf</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="dv">0</span><span class="sc">/</span><span class="dv">0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NaN</code></pre>
+</div>
+</div>
+<p><strong>Scalar vs.&nbsp;Scalar</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a>a <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb53-2"><a href=""></a>a <span class="sc">==</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href=""></a>a <span class="sc">!=</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>a <span class="sc">&gt;</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href=""></a>a <span class="sc">&lt;=</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p><strong>Vector vs.&nbsp;Vector</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href=""></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, pi, <span class="dv">4</span>)</span>
+<span id="cb61-2"><a href=""></a>w <span class="ot">&lt;-</span> <span class="fu">rep</span>(pi, <span class="dv">3</span>)</span>
+<span id="cb61-3"><a href=""></a>v <span class="sc">==</span> w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href=""></a>v <span class="sc">!=</span> w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href=""></a>v <span class="sc">&lt;</span> w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href=""></a>v <span class="sc">&gt;=</span> w</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE</code></pre>
+</div>
+</div>
+<p><strong>Scalar vs.&nbsp;Vector</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href=""></a>v <span class="sc">==</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href=""></a>v <span class="sc">&gt;</span> pi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href=""></a><span class="fu">any</span>(v <span class="sc">==</span> pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href=""></a><span class="fu">all</span>(v <span class="sc">==</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="비교-논리-연산-1" class="slide level2">
+<h2>비교 논리 연산</h2>
+<p><strong>is.~ () 함수 : 개체의 속성을 묻는 함수</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href=""></a>u <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, pi, <span class="cn">Inf</span>, <span class="cn">NULL</span>, <span class="cn">NaN</span>, <span class="cn">NA</span>)</span>
+<span id="cb77-2"><a href=""></a></span>
+<span id="cb77-3"><a href=""></a><span class="fu">is.finite</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href=""></a><span class="fu">is.infinite</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href=""></a><span class="fu">is.na</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href=""></a><span class="fu">is.nan</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href=""></a><span class="fu">is.null</span>(u)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<ul>
+<li><p><code>na</code>는 not available, <code>nan</code>는 not a number (예, 0/0, sqrt(-1)).</p></li>
+<li><p><code>nan</code>은 숫자형 결측값, <code>na</code>는 모든 종류의 결측값이라 생각하면 됨.</p></li>
+</ul>
+</section>
+<section id="인덱스의-활용" class="slide level2">
+<h2>인덱스의 활용</h2>
+<ul>
+<li>대괄호 연산자 <code>[index]</code>를 사용하여 벡터 요소 위치 지정. 제외하고 싶은 원소의 인덱스는 음수 <code>-</code>로.</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href=""></a>fib <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">8</span>)</span>
+<span id="cb87-2"><a href=""></a>fib[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href=""></a>fib[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href=""></a>fib[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href=""></a>fib[<span class="sc">-</span><span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 1 2 3 5 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href=""></a>fib[<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 5 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href=""></a>fib <span class="sc">&lt;</span> <span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href=""></a>fib[fib <span class="sc">&lt;</span> <span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0 1 1 2 3</code></pre>
+</div>
+</div>
+<ul>
+<li><code>which()</code>: 조건에 해당하는 인덱스를 찾아줌</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href=""></a><span class="fu">which</span>(fib <span class="sc">==</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href=""></a><span class="fu">which</span>(fib <span class="sc">&gt;</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5 6 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href=""></a><span class="fu">which.max</span>(fib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href=""></a><span class="fu">which.min</span>(fib)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+</section>
+<section id="r-연산자-정리" class="slide level2">
+<h2>R 연산자 정리</h2>
+<p><strong>1. 기초 연산자 (Arithmetic Operators)</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>연산자</th>
+<th>설명</th>
+<th>예제</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>+</code></td>
+<td>덧셈</td>
+<td><code>5 + 3</code></td>
+<td><code>8</code></td>
+</tr>
+<tr class="even">
+<td><code>-</code></td>
+<td>뺄셈</td>
+<td><code>5 - 3</code></td>
+<td><code>2</code></td>
+</tr>
+<tr class="odd">
+<td><code>*</code></td>
+<td>곱셈</td>
+<td><code>5 * 3</code></td>
+<td><code>15</code></td>
+</tr>
+<tr class="even">
+<td><code>/</code></td>
+<td>나눗셈</td>
+<td><code>5 / 3</code></td>
+<td><code>1.6667</code></td>
+</tr>
+<tr class="odd">
+<td><code>^</code> 또는 <code>**</code></td>
+<td>거듭제곱</td>
+<td><code>5^3</code></td>
+<td><code>125</code></td>
+</tr>
+<tr class="even">
+<td><code>%%</code></td>
+<td>나머지</td>
+<td><code>5 %% 3</code></td>
+<td><code>2</code></td>
+</tr>
+<tr class="odd">
+<td><code>%/%</code></td>
+<td>정수 나눗셈</td>
+<td><code>5 %/% 3</code></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. 관계 연산자 (Comparison Operators)</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>연산자</th>
+<th>설명</th>
+<th>예제</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>==</code></td>
+<td>같음</td>
+<td><code>5 == 3</code></td>
+<td><code>FALSE</code></td>
+</tr>
+<tr class="even">
+<td><code>!=</code></td>
+<td>다름</td>
+<td><code>5 != 3</code></td>
+<td><code>TRUE</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;</code></td>
+<td>초과</td>
+<td><code>5 &gt; 3</code></td>
+<td><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;</code></td>
+<td>미만</td>
+<td><code>5 &lt; 3</code></td>
+<td><code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td><code>&gt;=</code></td>
+<td>이상</td>
+<td><code>5 &gt;= 3</code></td>
+<td><code>TRUE</code></td>
+</tr>
+<tr class="even">
+<td><code>&lt;=</code></td>
+<td>이하</td>
+<td><code>5 &lt;= 3</code></td>
+<td><code>FALSE</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>3. 논리 연산자 (Logical Operators)</strong></p>
+<table class="caption-top" style="width:100%;">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>연산자</th>
+<th>설명</th>
+<th>예제</th>
+<th>결과</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&amp;</code></td>
+<td>AND (벡터 연산)</td>
+<td><code>c(TRUE, FALSE) &amp; c(TRUE, TRUE)</code></td>
+<td><code>TRUE FALSE</code></td>
+</tr>
+<tr class="even">
+<td><code>|</code></td>
+<td>OR (벡터 연산)</td>
+<td><code>c(TRUE, FALSE) | c(FALSE, FALSE)</code></td>
+<td><code>TRUE FALSE</code></td>
+</tr>
+<tr class="odd">
+<td><code>!</code></td>
+<td>NOT</td>
+<td><code>!TRUE</code></td>
+<td><code>FALSE</code></td>
+</tr>
+<tr class="even">
+<td><code>&amp;&amp;</code></td>
+<td>AND (단일 값 연산)</td>
+<td><code>TRUE &amp;&amp; FALSE</code></td>
+<td><code>FALSE</code></td>
+</tr>
+<tr class="odd">
+<td><code>||</code></td>
+<td>OR (단일 값 연산)</td>
+<td><code>TRUE || FALSE</code></td>
+<td><code>TRUE</code></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="data.frame" class="slide level2">
 <h2><code>data.frame</code></h2>
 <p><code>data.frame</code>은 <strong>표 형식(tabular)의 데이터</strong>를 나타냄. 엑셀 스프레드시트와 유사.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href=""></a>example_data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>),</span>
-<span id="cb31-2"><a href=""></a>                          <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Hello"</span>, <span class="dv">3</span>), <span class="st">"Goodbye"</span>),</span>
-<span id="cb31-3"><a href=""></a>                          <span class="at">z =</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="dv">2</span>, <span class="st">"three"</span>, <span class="dv">4</span>))</span>
-<span id="cb31-4"><a href=""></a>example_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href=""></a>example_data <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>),</span>
+<span id="cb109-2"><a href=""></a>                          <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"Hello"</span>, <span class="dv">3</span>), <span class="st">"Goodbye"</span>),</span>
+<span id="cb109-3"><a href=""></a>                          <span class="at">z =</span> <span class="fu">c</span>(<span class="st">"one"</span>, <span class="dv">2</span>, <span class="st">"three"</span>, <span class="dv">4</span>))</span>
+<span id="cb109-4"><a href=""></a>example_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  x       y     z
 1 1   Hello   one
@@ -789,7 +1152,7 @@
 <h2><code>data.frame</code> …continued</h2>
 <p>Dataframe을 설명하는 데 유용한 함수</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href=""></a><span class="fu">str</span>(example_data) <span class="co"># `str` 함수는 R 객체의 구조를 설명</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href=""></a><span class="fu">str</span>(example_data) <span class="co"># `str` 함수는 R 객체의 구조를 설명</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   4 obs. of  3 variables:
  $ x: num  1 3 5 7
@@ -798,19 +1161,19 @@
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href=""></a><span class="fu">names</span>(example_data) <span class="co"># column names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href=""></a><span class="fu">names</span>(example_data) <span class="co"># column names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "x" "y" "z"</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href=""></a><span class="fu">nrow</span>(example_data) <span class="co"># number of rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href=""></a><span class="fu">nrow</span>(example_data) <span class="co"># number of rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href=""></a><span class="fu">ncol</span>(example_data) <span class="co"># number of columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href=""></a><span class="fu">ncol</span>(example_data) <span class="co"># number of columns</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 3</code></pre>
 </div>
@@ -818,9 +1181,12 @@
 </section>
 <section id="task-2" class="slide level2 scrollable" data-background-color="#ffebf0">
 <h2>Task 2</h2>
-<div style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;">
-<p></p><div class="countdown" id="timer_94b9decb" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
-</div>
+<!-- ::: {style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;"} -->
+<!-- `<div class="countdown" id="timer_8c349b76" data-update-every="1" tabindex="0" style="top:0;right:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">07</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>`{=html} -->
+<!-- ::: -->
 <ol type="1">
 <li><p><code>help(read.csv)</code> 또는 구글을 사용하여 <code>.csv</code> 파일을 가져오는 방법을 찾아보시오. 단, “Import Dataset” 버튼을 사용하거나 패키지를 설치하지 마시오.</p></li>
 <li><p><a href="https://www.dropbox.com/s/zuk0qcfm3kyzs4e/gun_murders.csv?dl=1">gun_murders.csv</a> 파일을 새로운 객체 <code>murders</code>에 저장하시오. 이 파일은 2010년 미국 주별 총기 살인 사건 데이터를 포함. (힌트: 객체는 <code>=</code> 또는 <code>&lt;-</code>를 사용하여 생성)</p></li>
@@ -835,16 +1201,16 @@
 <li>한 개의 열을 <strong>벡터 형태로 추출</strong>하려면 <code>$</code> 연산자 (<code>murders$state</code>) 또는 대괄호 연산자 <code>[which_index]</code>를 이름이나 위치 인덱스와 함께 사용할 수 있음:</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href=""></a>first5 <span class="ot">&lt;-</span> murders[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]  <span class="co"># 처음 5개 주만 선택</span></span>
-<span id="cb41-2"><a href=""></a>first5<span class="sc">$</span>state  <span class="co"># $ 연산자로 추출</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href=""></a>first5 <span class="ot">&lt;-</span> murders[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]  <span class="co"># 처음 5개 주만 선택</span></span>
+<span id="cb119-2"><a href=""></a>first5<span class="sc">$</span>state  <span class="co"># $ 연산자로 추출</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href=""></a>first5[ ,<span class="st">"state"</span>]  <span class="co"># 열 이름으로 추출</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href=""></a>first5[ ,<span class="st">"state"</span>]  <span class="co"># 열 이름으로 추출</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href=""></a>first5[ ,<span class="dv">1</span>] <span class="co"># 첫 번째 열 가져오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href=""></a>first5[ ,<span class="dv">1</span>] <span class="co"># 첫 번째 열 가져오기</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Alabama"    "Alaska"     "Arizona"    "Arkansas"   "California"</code></pre>
 </div>
@@ -853,7 +1219,7 @@
 <li>객체의 <code>class</code> 확인 (데이터구조):</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href=""></a><span class="fu">class</span>(murders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href=""></a><span class="fu">class</span>(murders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
@@ -862,7 +1228,7 @@
 <li><code>typeof</code> 함수: 데이터 저장 방식</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href=""></a><span class="fu">typeof</span>(murders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href=""></a><span class="fu">typeof</span>(murders)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "list"</code></pre>
 </div>
@@ -881,8 +1247,8 @@
 <li>데이터프레임에서 특정 부분을 선택하려면 <code>murders[행 조건, 열 번호]</code> 또는 <code>murders[행 조건, "열 이름"]</code>을 사용.</li>
 </ul>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href=""></a><span class="co"># 총기 살인 사건이 500건 이상인 주만 선택하고 "state"와 "total" 변수만 유지</span></span>
-<span id="cb51-2"><a href=""></a>murders[murders<span class="sc">$</span>total <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"total"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href=""></a><span class="co"># 총기 살인 사건이 500건 이상인 주만 선택하고 "state"와 "total" 변수만 유지</span></span>
+<span id="cb129-2"><a href=""></a>murders[murders<span class="sc">$</span>total <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"total"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        state total
 5  California  1257
@@ -890,8 +1256,8 @@
 33   New York   517
 44      Texas   805</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href=""></a><span class="co"># 캘리포니아와 텍사스만 선택하고 "state"와 "total" 변수만 유지</span></span>
-<span id="cb53-2"><a href=""></a>murders[murders<span class="sc">$</span>state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"California"</span>, <span class="st">"Texas"</span>), <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"total"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href=""></a><span class="co"># 캘리포니아와 텍사스만 선택하고 "state"와 "total" 변수만 유지</span></span>
+<span id="cb131-2"><a href=""></a>murders[murders<span class="sc">$</span>state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"California"</span>, <span class="st">"Texas"</span>), <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"total"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        state total
 5  California  1257
@@ -899,14 +1265,11 @@
 </div>
 </div>
 <pre><code>* `subset` 명령어 사용 가능 (종종 더 직관적)</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href=""></a><span class="fu">subset</span>(murders, total <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="at">select =</span> <span class="fu">c</span>(state, total))</span>
-<span id="cb56-2"><a href=""></a><span class="fu">subset</span>(murders, state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"California"</span>, <span class="st">"Texas"</span>), <span class="at">select =</span> <span class="fu">c</span>(state, total))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href=""></a><span class="fu">subset</span>(murders, total <span class="sc">&gt;</span> <span class="dv">500</span>, <span class="at">select =</span> <span class="fu">c</span>(state, total))</span>
+<span id="cb134-2"><a href=""></a><span class="fu">subset</span>(murders, state <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"California"</span>, <span class="st">"Texas"</span>), <span class="at">select =</span> <span class="fu">c</span>(state, total))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="task-3" class="slide level2 scrollable" data-background-color="#ffebf0">
 <h2>Task 3</h2>
-<div style="position: absolute; top: -30px; right: 10px; font-size: 0.8em;">
-<p></p><div class="countdown" id="timer_454758e2" data-update-every="1" tabindex="0" style="top:0;right:0;"> <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div> <code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code> </div><p></p>
-</div>
 <ol type="1">
 <li><p><code>murders</code> 데이터프레임에는 몇 개의 관측값(observations)이 있는가?</p></li>
 <li><p>몇 개의 변수? 각 변수의 데이터 유형(data type)은 무엇인가?</p></li>
@@ -914,7 +1277,7 @@
 <li><p><code>state</code>와 <code>total</code> 열만 포함하는 <code>murders_3</code> 객체를 만드시오. (<code>c</code> 함수가 벡터를 생성함)</p></li>
 <li><p>아래 코드를 실행하여 10,000명당 살인 사건 수를 나타내는 <code>total_percap</code> 변수를 생성하시오.</p></li>
 </ol>
-<div class="sourceCode" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href=""></a>murders<span class="sc">$</span>total_percap <span class="ot">=</span> (murders<span class="sc">$</span>total <span class="sc">/</span> murders<span class="sc">$</span>population) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href=""></a>murders<span class="sc">$</span>total_percap <span class="ot">=</span> (murders<span class="sc">$</span>total <span class="sc">/</span> murders<span class="sc">$</span>population) <span class="sc">*</span> <span class="dv">10000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>murders</code> 객체를 클릭하여 새 변수를 확인해 보시오.</p>
 </section>
 <section>
@@ -954,7 +1317,7 @@
 <pre><code>---
 title: "과제 제목"
 author: "이름 (학번)"
-date: "2025-02-22 19:05:12"
+date: "2025-02-24 11:28:49"
 format: html_document
 execute:
   echo: true
